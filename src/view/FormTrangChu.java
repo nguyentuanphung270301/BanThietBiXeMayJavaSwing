@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author phucn
@@ -36,7 +38,7 @@ public class FormTrangChu extends javax.swing.JFrame {
         btnCapNhatDonHang = new javax.swing.JButton();
         btnBanHang = new javax.swing.JButton();
         btnThongKe = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnTimKiem = new javax.swing.JButton();
         btnCapNhatTaiKhoan = new javax.swing.JButton();
         btnDangXuat = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
@@ -54,6 +56,11 @@ public class FormTrangChu extends javax.swing.JFrame {
         btnCapNhatNhanVien.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatNhanVien.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCapNhatNhanVien.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCapNhatNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatNhanVienActionPerformed(evt);
+            }
+        });
 
         btnCapNhatThongTin.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnCapNhatThongTin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/file-info-icon.png"))); // NOI18N
@@ -61,6 +68,11 @@ public class FormTrangChu extends javax.swing.JFrame {
         btnCapNhatThongTin.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatThongTin.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCapNhatThongTin.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCapNhatThongTin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatThongTinActionPerformed(evt);
+            }
+        });
 
         btnCapNhatSanPham.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnCapNhatSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Ecommerce-Product-icon.png"))); // NOI18N
@@ -68,6 +80,11 @@ public class FormTrangChu extends javax.swing.JFrame {
         btnCapNhatSanPham.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatSanPham.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCapNhatSanPham.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCapNhatSanPham.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatSanPhamActionPerformed(evt);
+            }
+        });
 
         btnCapNhatDonHang.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnCapNhatDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cart-icon.png"))); // NOI18N
@@ -75,6 +92,11 @@ public class FormTrangChu extends javax.swing.JFrame {
         btnCapNhatDonHang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatDonHang.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCapNhatDonHang.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCapNhatDonHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatDonHangActionPerformed(evt);
+            }
+        });
 
         btnBanHang.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Cash-register-icon.png"))); // NOI18N
@@ -82,6 +104,11 @@ public class FormTrangChu extends javax.swing.JFrame {
         btnBanHang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBanHang.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnBanHang.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnBanHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBanHangActionPerformed(evt);
+            }
+        });
 
         btnThongKe.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cash-icon.png"))); // NOI18N
@@ -89,13 +116,23 @@ public class FormTrangChu extends javax.swing.JFrame {
         btnThongKe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnThongKe.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnThongKe.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThongKeActionPerformed(evt);
+            }
+        });
 
-        jButton1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search-icon.png"))); // NOI18N
-        jButton1.setText("Tìm kiếm");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnTimKiem.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/search-icon.png"))); // NOI18N
+        btnTimKiem.setText("Tìm kiếm");
+        btnTimKiem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnTimKiem.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btnTimKiem.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         btnCapNhatTaiKhoan.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnCapNhatTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/User-icon.png"))); // NOI18N
@@ -103,6 +140,11 @@ public class FormTrangChu extends javax.swing.JFrame {
         btnCapNhatTaiKhoan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatTaiKhoan.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCapNhatTaiKhoan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCapNhatTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCapNhatTaiKhoanActionPerformed(evt);
+            }
+        });
 
         btnDangXuat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Apps-session-logout-icon.png"))); // NOI18N
@@ -140,7 +182,7 @@ public class FormTrangChu extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnCapNhatNhanVien)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -177,7 +219,7 @@ public class FormTrangChu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCapNhatTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnThoat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -188,12 +230,68 @@ public class FormTrangChu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        System.exit(0);
+        int click = JOptionPane.showConfirmDialog(this,"Bạn có muốn thoát chương trình hay không ?","Thông báo", 2);
+        if(click == JOptionPane.OK_OPTION){
+            System.exit(0);
+        }
+        else if(click==JOptionPane.CANCEL_OPTION){
+            this.setVisible(true);
+        }
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangXuatActionPerformed
-             
+             FormDangNhap dangNhap = new FormDangNhap();
+             dangNhap.setVisible(true);
+             this.setVisible(false);
     }//GEN-LAST:event_btnDangXuatActionPerformed
+
+    private void btnCapNhatNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatNhanVienActionPerformed
+        FormCapNhatNhanVien capNhatNhanVien = new FormCapNhatNhanVien();
+        capNhatNhanVien.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCapNhatNhanVienActionPerformed
+
+    private void btnCapNhatThongTinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatThongTinActionPerformed
+        FormCapNhatThongTin capNhatThongTin = new FormCapNhatThongTin();
+        capNhatThongTin.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCapNhatThongTinActionPerformed
+
+    private void btnCapNhatSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatSanPhamActionPerformed
+        FormCapNhatSanPham capNhatSanPham = new FormCapNhatSanPham();
+        capNhatSanPham.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCapNhatSanPhamActionPerformed
+
+    private void btnCapNhatDonHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatDonHangActionPerformed
+        FormCapNhatDonHang capNhatDonHang = new FormCapNhatDonHang();
+        capNhatDonHang.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCapNhatDonHangActionPerformed
+
+    private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
+        FormBanHang banHang = new FormBanHang();
+        banHang.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBanHangActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        FormThongKe thongKe = new FormThongKe();
+        thongKe.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+       FormTimKiem timKiem = new FormTimKiem();
+       timKiem.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnCapNhatTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatTaiKhoanActionPerformed
+        FormCapNhatTaiKhoan capNhatTaiKhoan = new FormCapNhatTaiKhoan();
+        capNhatTaiKhoan.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnCapNhatTaiKhoanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,7 +338,7 @@ public class FormTrangChu extends javax.swing.JFrame {
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnThoat;
     private javax.swing.JButton btnThongKe;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

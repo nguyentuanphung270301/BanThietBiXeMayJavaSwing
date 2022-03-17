@@ -4,6 +4,9 @@
  */
 package view;
 
+import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author phucn
@@ -18,7 +21,9 @@ public class FormDangNhap extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setResizable(false);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setTitle("Đăng nhập");
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -130,15 +135,27 @@ public class FormDangNhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        System.exit(0);
+        int click = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát khỏi chương trình hay không ?","Thông báo",2);
+        if(click == JOptionPane.OK_OPTION){
+            System.exit(0);
+        }
+        else{
+            if(click == JOptionPane.CANCEL_OPTION){
+                this.setVisible(true);
+            }
+        }
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnDoiMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoiMatKhauActionPerformed
-        // TODO add your handling code here:
+        FormDoiMatKhau doiMatKhau = new FormDoiMatKhau();
+        doiMatKhau.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        
+       FormTrangChu trangChu = new FormTrangChu();
+       trangChu.setVisible(true);
+       this.setVisible(false);
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**

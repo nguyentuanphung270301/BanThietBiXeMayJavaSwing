@@ -34,7 +34,7 @@
                           <Group type="102" attributes="0">
                               <Component id="btnThongKe" min="-2" pref="157" max="-2" attributes="0"/>
                               <EmptySpace pref="42" max="32767" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="151" max="-2" attributes="0"/>
+                              <Component id="btnTimKiem" min="-2" pref="151" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="btnCapNhatNhanVien" min="-2" max="-2" attributes="0"/>
@@ -83,7 +83,7 @@
               <EmptySpace pref="119" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnThongKe" pref="108" max="32767" attributes="0"/>
-                  <Component id="jButton1" max="32767" attributes="0"/>
+                  <Component id="btnTimKiem" max="32767" attributes="0"/>
                   <Component id="btnCapNhatTaiKhoan" max="32767" attributes="0"/>
                   <Component id="btnDangXuat" max="32767" attributes="0"/>
                   <Component id="btnThoat" max="32767" attributes="0"/>
@@ -116,6 +116,9 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatNhanVienActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCapNhatThongTin">
       <Properties>
@@ -130,6 +133,9 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatThongTinActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCapNhatSanPham">
       <Properties>
@@ -144,6 +150,9 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatSanPhamActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCapNhatDonHang">
       <Properties>
@@ -158,6 +167,9 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatDonHangActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnBanHang">
       <Properties>
@@ -172,6 +184,9 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBanHangActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnThongKe">
       <Properties>
@@ -186,8 +201,11 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThongKeActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="btnTimKiem">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="14" style="0"/>
@@ -200,6 +218,9 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimKiemActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCapNhatTaiKhoan">
       <Properties>
@@ -214,6 +235,9 @@
         <Property name="verticalAlignment" type="int" value="3"/>
         <Property name="verticalTextPosition" type="int" value="3"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCapNhatTaiKhoanActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDangXuat">
       <Properties>
