@@ -17,6 +17,7 @@ public class FormThongKe extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setTitle("Thống kê");
     }
 
@@ -188,7 +189,7 @@ public class FormThongKe extends javax.swing.JFrame {
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangChuActionPerformed
-        FormTrangChu trangChu = new FormTrangChu();
+        FormTrangChu_QuanLy trangChu = new FormTrangChu_QuanLy();
         trangChu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnTrangChuActionPerformed

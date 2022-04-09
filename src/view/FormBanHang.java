@@ -17,6 +17,7 @@ public class FormBanHang extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setTitle("Bán hàng");
     }
 
@@ -35,7 +36,7 @@ public class FormBanHang extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         cbxLoaiSanPham = new javax.swing.JComboBox<>();
-        txtMaSanPham = new javax.swing.JTextField();
+        txtBaoHanh = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbxTenSanPham = new javax.swing.JComboBox<>();
@@ -59,6 +60,7 @@ public class FormBanHang extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         lbNgay = new javax.swing.JLabel();
         lbGio = new javax.swing.JLabel();
+        lbTenNhanVien = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         lbTienHoaDon = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -85,13 +87,13 @@ public class FormBanHang extends javax.swing.JFrame {
         jLabel1.setText("BÁN HÀNG");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel2.setText("Loại sản phẩm");
+        jLabel2.setText("Loại thiết bị");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel3.setText("Mã sản phẩm");
+        jLabel3.setText("Bảo hành");
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel4.setText("Tên sản phẩm");
+        jLabel4.setText("Tên thiết bị");
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setText("Số lượng");
@@ -114,7 +116,7 @@ public class FormBanHang extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cbxLoaiSanPham, 0, 125, Short.MAX_VALUE)
-                    .addComponent(txtMaSanPham))
+                    .addComponent(txtBaoHanh))
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -147,7 +149,7 @@ public class FormBanHang extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtMaSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBaoHanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(txtSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
@@ -164,15 +166,19 @@ public class FormBanHang extends javax.swing.JFrame {
 
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/math-add-icon.png"))); // NOI18N
         btnThem.setText("Thêm SP");
+        btnThem.setEnabled(false);
 
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pencil-icon.png"))); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.setEnabled(false);
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
         btnXoa.setText("Xoá SP");
+        btnXoa.setEnabled(false);
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
+        btnLuu.setEnabled(false);
 
         btnInDanhSach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer-icon.png"))); // NOI18N
         btnInDanhSach.setText("Xuất hoá đơn");
@@ -198,7 +204,7 @@ public class FormBanHang extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel8.setText("Tên");
+        jLabel8.setText("Tên:");
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setText("Giờ:");
@@ -212,6 +218,9 @@ public class FormBanHang extends javax.swing.JFrame {
         lbGio.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lbGio.setText("Time");
 
+        lbTenNhanVien.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lbTenNhanVien.setText("Name");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -219,7 +228,6 @@ public class FormBanHang extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel9)
@@ -227,16 +235,24 @@ public class FormBanHang extends javax.swing.JFrame {
                         .addComponent(lbGio, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                         .addGap(2, 2, 2))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbNgay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(lbTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel8)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(lbTenNhanVien))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNgay)
@@ -319,7 +335,7 @@ public class FormBanHang extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Tiền"
+                "Mã thiết bị", "Tên thiết bị", "Số lượng", "Tiền"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -396,7 +412,7 @@ public class FormBanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHoaDonMoiActionPerformed
 
     private void btnTrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangChuActionPerformed
-        FormTrangChu trangChu = new FormTrangChu();
+        FormTrangChu_QuanLy trangChu = new FormTrangChu_QuanLy();
         trangChu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnTrangChuActionPerformed
@@ -468,10 +484,11 @@ public class FormBanHang extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbGio;
     private javax.swing.JLabel lbNgay;
+    private javax.swing.JLabel lbTenNhanVien;
     private javax.swing.JLabel lbTienDu;
     private javax.swing.JLabel lbTienHoaDon;
+    private javax.swing.JTextField txtBaoHanh;
     private javax.swing.JTextField txtGia;
-    private javax.swing.JTextField txtMaSanPham;
     private javax.swing.JTextField txtSoLuong;
     private javax.swing.JTextField txtThanhTien;
     private javax.swing.JTextField txtTien;

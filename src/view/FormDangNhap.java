@@ -153,7 +153,7 @@ public class FormDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-       FormTrangChu trangChu = new FormTrangChu();
+       FormTrangChu_QuanLy trangChu = new FormTrangChu_QuanLy();
        trangChu.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_btnDangNhapActionPerformed

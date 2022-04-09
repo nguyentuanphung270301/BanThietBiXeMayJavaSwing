@@ -17,6 +17,7 @@ public class FormDoiMatKhau extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setTitle("Đổi mật khẩu");
     }
 
