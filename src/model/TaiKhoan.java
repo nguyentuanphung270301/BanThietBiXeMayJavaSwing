@@ -8,7 +8,14 @@ public class TaiKhoan {
     Date ngayTao ;
     public TaiKhoan() {
     }
-
+    public TaiKhoan(TaiKhoan taiKhoan){
+        this.tenDangNhap = taiKhoan.getTenDangNhap();
+        this.matKhau = taiKhoan.getMatKhau();
+        this.maNhanVien = taiKhoan.getMaNhanVien();
+        this.hoTen = taiKhoan.getHoTen();
+        this.loaiTaiKhoan = taiKhoan.getLoaiTaiKhoan();
+        this.ngayTao = taiKhoan.getNgayTao();
+    }
     public TaiKhoan(String tenDangNhap, String matKhau, String maNhanVien, String hoTen, String loaiTaiKhoan, Date ngayTao) {
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;

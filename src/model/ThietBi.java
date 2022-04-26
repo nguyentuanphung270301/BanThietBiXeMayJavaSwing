@@ -8,13 +8,13 @@ public class ThietBi {
     private String maNSX;
     private String tgBaoHanh;
     private int soLuong;
-    private float Gia;
+    private String Gia;
     private byte[] hinhAnh;
 
     public ThietBi() {
     }
    
-    public ThietBi(String maThietBi, String tenThietBi, String maLoai, String maNSX, String tgBaoHanh, int soLuong, float Gia, byte[] hinhAnh) {
+    public ThietBi(String maThietBi, String tenThietBi, String maLoai, String maNSX, String tgBaoHanh, int soLuong, String Gia, byte[] hinhAnh) {
         this.maThietBi = maThietBi;
         this.tenThietBi = tenThietBi;
         this.maLoai = maLoai;
@@ -24,7 +24,16 @@ public class ThietBi {
         this.Gia = Gia;
         this.hinhAnh = hinhAnh;
     }
-
+      public ThietBi(ThietBi thietBi) {
+        this.maThietBi = thietBi.getMaThietBi();
+        this.tenThietBi = thietBi.getTenThietBi();
+        this.maLoai = thietBi.getMaLoai();
+        this.maNSX = thietBi.getMaNSX();
+        this.tgBaoHanh = thietBi.getTgBaoHanh();
+        this.soLuong = thietBi.getSoLuong();
+        this.Gia = thietBi.getGia();
+        this.hinhAnh = thietBi.getHinhAnh();
+    }
     public String getMaThietBi() {
         return maThietBi;
     }
@@ -73,11 +82,11 @@ public class ThietBi {
         this.soLuong = soLuong;
     }
 
-    public float getGia() {
+    public String getGia() {
         return Gia;
     }
 
-    public void setGia(float Gia) {
+    public void setGia(String Gia) {
         this.Gia = Gia;
     }
 

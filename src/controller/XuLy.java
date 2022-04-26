@@ -29,12 +29,16 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JFrame;
+import model.ChiTietDatHang;
 import model.ChucVu;
+import model.DatHang;
+import model.HoaDon;
 import model.LoaiThietBi;
 import model.NhaSanXuat;
 import model.NhanVien;
 import model.TaiKhoan;
 import model.ThietBi;
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import view.FormTrangChu_NhanVien;
 import view.FormTrangChu_QuanLy;
 
@@ -42,9 +46,12 @@ public class XuLy {
     private TaiKhoan taiKhoan;
     private ChucVu chucVu;
     private NhanVien nhanvien;
+    private DatHang datHang;
     private LoaiThietBi loaiThietBi;
     private NhaSanXuat nhaSanXuat;
     private ThietBi thietBi;
+    private  ChiTietDatHang chiTietDatHang;
+    private HoaDon hoaDon;
     private Random generator = new Random();
      public boolean DangNhap(String tenDangNhap, String matKhau, JFrame jFrame) throws SQLException{
         boolean ketQua = false;
@@ -60,10 +67,11 @@ public class XuLy {
                 TaiKhoan tk = new TaiKhoan();
                 tk.setTenDangNhap(rs.getString("TENDANGNHAP"));
                 tk.setHoTen(rs.getString("HOTEN"));
+                tk.setMaNhanVien(rs.getString("MANHANVIEN"));
                 tk.setLoaiTaiKhoan(rs.getString("LOAITAIKHOAN"));
                 ShareData.nguoiDangNhap = tk;
                 if(rs.getString("LOAITAIKHOAN").equals("Nhân viên")){
-                    FormTrangChu_NhanVien trangChu_NhanVien = new FormTrangChu_NhanVien();
+                    FormTrangChu_NhanVien trangChu_NhanVien = new FormTrangChu_NhanVien(taiKhoan);
                     jFrame.dispose();
                     trangChu_NhanVien.setVisible(true);
                 }
@@ -566,12 +574,28 @@ public class XuLy {
             PreparedStatement ps = ketNoi.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                arry.add(thietBi = new ThietBi(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getFloat(7), rs.getBytes(8)));
+                arry.add(thietBi = new ThietBi(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getBytes(8)));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return arry;
+    }
+    public ThietBi layThietBiTheoMa(String maThietBi) {
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        ArrayList arry = new ArrayList();
+        String sql = "SELECT * FROM THIETBI WHERE MATHIETBI = ?";
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maThietBi);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                thietBi = new ThietBi(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getBytes(8));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return thietBi;
     }
     public int layMaThietBi(String maThietBi) {
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
@@ -617,6 +641,22 @@ public class XuLy {
         }
         return ketQua;
     }
+    public ArrayList layThietBiTheoMaLoai(String maLoai) {
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        ArrayList arry = new ArrayList();
+        String sql = "EXEC SP_LAYTHIETBITHEOMALOAI ? ";
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maLoai);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                arry.add(thietBi = new ThietBi(rs.getString(1).trim(), rs.getString(2).trim(), rs.getString(3).trim(), rs.getString(4).trim(), rs.getString(5).trim(), rs.getInt(6), rs.getString(7).trim(), rs.getBytes(8)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arry;
+    }
     public void themThietBi(String maThietBi, String tenThietBi, String maLoai, String maNSX, String tgBaoHanh, String gia, byte[] path) {
         String sql = "EXEC SP_THEMTHIETBI ?,?,?,?,?,?,?";
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
@@ -637,10 +677,10 @@ public class XuLy {
             ex.printStackTrace();
         }
     }
-      public void suaThietBi(String maThietBi, String tenThietBi, String maLoai, String maNSX, String tgBaoHanh, String gia, byte[] path, String maThietBiThayDoi) {
+      public void suaThietBi(String maThietBi, String tenThietBi, String maLoai, String maNSX, String tgBaoHanh, String gia, byte[] anh, String maThietBiThayDoi) {
         String sql = "EXEC SP_SUATHIETBI ?,?,?,?,?,?,?,?";
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
-        try {
+        try{
             PreparedStatement ps = ketNoi.prepareStatement(sql);
             ps.setString(1, maThietBi);
             ps.setString(2, tenThietBi);
@@ -648,13 +688,12 @@ public class XuLy {
             ps.setString(4, maNSX);
             ps.setString(5, tgBaoHanh);
             ps.setString(6, gia );
-            
-            Blob hinh = new SerialBlob(path);
+            Blob hinh = new SerialBlob(anh);
             ps.setBlob(7, hinh);
-            
             ps.setString(8, maThietBiThayDoi);
             ps.executeUpdate();
-        } catch (Exception ex) {
+        }
+        catch(Exception ex){
             ex.printStackTrace();
         }
     }
@@ -787,11 +826,289 @@ public class XuLy {
             PreparedStatement ps = ketNoi.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                arry.add(thietBi = new ThietBi(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getFloat(7), rs.getBytes(8)));
+                arry.add(thietBi = new ThietBi(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7), rs.getBytes(8)));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return arry;
+    }
+    public ArrayList layDatHang() {
+        ArrayList array = new ArrayList();
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        String sql = "SELECT * FROM DATHANG WHERE TRANGTHAI = 0";
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                array.add(datHang = new DatHang(rs.getString(1).trim(), rs.getString(2).trim(), rs.getString(3).trim(), rs.getString(4).trim(),rs.getString(5),rs.getDate(6),rs.getInt(7)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return array;
+    }
+    public boolean ktmaDonHang() {
+        String sql = "SELECT * FROM DATHANG";
+        boolean ketQua = false;
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = true;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+    public int layMaDonHang() {
+        int max = 0;
+        ArrayList list = new ArrayList();
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        if (ktmaDonHang()) {
+            String sql = "SELECT * FROM DATHANG";
+            try {
+                PreparedStatement ps = ketNoi.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(rs.getString("MADDH").trim().substring(2, rs.getString("MADDH").trim().length()));
+                }
+                if (list.size() == 0) {
+                    return list.size();
+                } else {
+                    for (int i = 0; i < list.size(); i++) {
+                        if (max < Integer.parseInt(list.get(i).toString())) {
+                            max = Integer.parseInt(list.get(i).toString());
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } 
+        return max;
+    }
+    public DatHang layThongTinDatHang(String maDonHang) {
+        String sql = "EXEC SP_LAYTHONGTINDATHANG ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+           PreparedStatement ps = ketNoi.prepareStatement(sql);
+           ps.setString(1, maDonHang);
+           ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                datHang = new DatHang(rs.getString(1).trim(), rs.getString(2).trim(), rs.getString(3).trim(), rs.getString(4).trim(),rs.getString(5),rs.getDate(6),rs.getInt(7));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return datHang;
+    }
+    public ArrayList layThietBiDat(String maDonHang) {
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        ArrayList array = new ArrayList();
+        String sql = "EXEC SP_LAYCTDATHANG ?";
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                array.add(chiTietDatHang = new ChiTietDatHang(rs.getString(1).trim(), rs.getString(2).trim(), rs.getInt(3), rs.getString(4).trim()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return array;
+    }
+    public ArrayList layDonHang(String maDonHang) {
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        ArrayList array = new ArrayList();
+        String sql = "EXEC SP_LAYDONHANG ?";
+        
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                array.add(hoaDon = new HoaDon(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return array;
+    }
+    public void thayDoiSoLuongThietBi(String maThietBi,  int soLuong) {
+        String sql = "EXEC SP_THAYDOISOLUONGTHIETBI ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(2, maThietBi);
+            ps.setInt(1, soLuong);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void xoaThietBiKhoiDonDat(String maDonHang, String maThietBi) {
+        String sql = "EXEC SP_XOATHIETBIKHOIDONHANG ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.setString(2, maThietBi);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void xoaDonDatHang(String maDonHang) {
+        String sql = "EXEC SP_XOADATHANG ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void themDonHangMoi(String maDonHang, String tenKH, String sdt, String diaChi,String maNhanVien ,Date ngayDat, int trangThai) {
+        String sql = "EXEC SP_THEMDONDATHANGMOI ?,?,?,?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.setString(2, tenKH);
+            ps.setString(3, sdt);
+            ps.setString(4, diaChi);
+            ps.setString(5, maNhanVien);
+            ps.setDate(6, ngayDat);
+            ps.setInt(7, trangThai);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void suaDonHang( String tenKH, String sdt, String diaChi, Date ngayDat,String maDonHang) {
+        String sql = "EXEC SP_SUADONDATHANG ?,?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.setString(2, tenKH);
+            ps.setString(3, sdt);
+            ps.setString(4, diaChi);
+            ps.setDate(5, ngayDat);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public boolean ktThietBiDonHang(String maDonHang, String maThietBi) {
+        String sql = "EXEC SP_KTTHIETBIDATHANG ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        boolean ketQua = true;
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.setString(2, maThietBi);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+    public void themThietBiDonHang(String maDonHang, String maThietBi, int soLuong, String thanhTien) {
+        String sql = "EXEC SP_THEMTHIETBIDONHANG ?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.setString(2, maThietBi);
+            ps.setInt(3, soLuong);
+            ps.setString(4, thanhTien);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void suaThietBiDonHang(String maDonHang, String maThietBi, int soLuong, String thanhTien) {
+        String sql = "EXEC SP_SUATHIETBIDONHANG ?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.setString(2, maThietBi);
+            ps.setInt(3, soLuong);
+             ps.setString(4, thanhTien);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void chuyenTrangThaiDatHang(String maDonHang){
+        String sql = "EXEC SP_CHUYENTRANGTHAIDATHANG ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try{
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.executeUpdate();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public ArrayList layHoaDon() {
+
+        ArrayList array = new ArrayList();
+        String sql = "EXEC SP_LAYHOADON";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                array.add(hoaDon = new HoaDon(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return array;
+    }
+     public int layMaHoaDon() {
+        String sql = "SELECT * FROM PHIEUXUAT";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        int max = 0;
+        ArrayList list = new ArrayList();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if (rs.getString("MAPX").trim().substring(0, 2).endsWith("HD")) {
+                    list.add(rs.getString("MAPX").trim().substring(2, rs.getString("MAPX").trim().length()));
+                }
+            }
+            if (list.size() == 0) {
+                return list.size();
+            } else {
+                for (int i = 0; i < list.size(); i++) {
+                    if (max < Integer.parseInt(list.get(i).toString())) {
+                        max = Integer.parseInt(list.get(i).toString());
+                    } else {
+                        continue;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return max;
     }
 }

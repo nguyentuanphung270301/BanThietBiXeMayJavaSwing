@@ -15,8 +15,9 @@ import model.TaiKhoan;
  */
 public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnable{
 
+    private TaiKhoan taiKhoan;
     private Thread thread;
-    public FormTrangChu_NhanVien() {
+    public FormTrangChu_NhanVien(TaiKhoan taiKhoan) {
         initComponents();
         setLocationRelativeTo(null);
         this.setResizable(false);
@@ -223,19 +224,19 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
     }//GEN-LAST:event_btnThoatActionPerformed
 
     private void btnBanHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBanHangActionPerformed
-        FormBanHang banHang = new FormBanHang();
+        FormBanHang banHang = new FormBanHang(taiKhoan);
         banHang.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnBanHangActionPerformed
 
     private void btnCapNhatSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatSanPhamActionPerformed
-        FormQuanLyThietBi quanLySanPham = new FormQuanLyThietBi();
+        FormQuanLyThietBi quanLySanPham = new FormQuanLyThietBi(taiKhoan);
         quanLySanPham.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCapNhatSanPhamActionPerformed
 
     private void btnCapNhatDonHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatDonHangActionPerformed
-        FormCapNhatDonHang capNhatDonHang = new FormCapNhatDonHang();
+        FormCapNhatDonHang capNhatDonHang = new FormCapNhatDonHang(taiKhoan);
         capNhatDonHang.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCapNhatDonHangActionPerformed
@@ -275,7 +276,8 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormTrangChu_NhanVien().setVisible(true);
+                TaiKhoan taiKhoan = new TaiKhoan();
+                new FormTrangChu_NhanVien(taiKhoan).setVisible(true);
             }
         });
     }

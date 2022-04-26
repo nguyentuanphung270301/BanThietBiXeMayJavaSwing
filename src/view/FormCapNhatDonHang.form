@@ -101,7 +101,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="210" y="13" width="1060" height="57"/>
+          <AbsoluteConstraints x="210" y="13" width="1030" height="57"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -225,6 +225,9 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoDienThoaiKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel11">
           <Properties>
@@ -236,6 +239,7 @@
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="txtNgayDat">
           <Properties>
+            <Property name="dateFormatString" type="java.lang.String" value="dd/MM/yyyy"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -244,7 +248,7 @@
     <Container class="javax.swing.JPanel" name="jPanel4">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="300" width="1240" height="110"/>
+          <AbsoluteConstraints x="10" y="350" width="1230" height="70"/>
         </Constraint>
       </Constraints>
 
@@ -254,23 +258,20 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnLamMoi" min="-2" pref="105" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="btnThemDonHang" min="-2" pref="125" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnSuaDonHang" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnXoaDonHang" min="-2" pref="137" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnThemThietBi" min="-2" pref="125" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnSuaThietBi" min="-2" pref="121" max="-2" attributes="0"/>
-                  <EmptySpace pref="29" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnXoaThietBi" min="-2" pref="137" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnLuu" min="-2" pref="135" max="-2" attributes="0"/>
-                      <Component id="btnInDanhSach" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <Component id="btnLuu" min="-2" pref="135" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -278,26 +279,22 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btnLuu" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnInDanhSach" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnThemDonHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnSuaDonHang" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnXoaDonHang" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="btnThemThietBi" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="btnSuaThietBi" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnXoaThietBi" alignment="3" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="btnLamMoi" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnLamMoi" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnXoaThietBi" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnLuu" alignment="3" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="btnThemDonHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSuaDonHang" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnXoaDonHang" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btnThemThietBi" alignment="3" max="32767" attributes="0"/>
+                          <Component id="btnSuaThietBi" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -347,6 +344,9 @@
             <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n h&#xe0;ng"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaDonHangActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLuu">
           <Properties>
@@ -356,17 +356,8 @@
             <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnInDanhSach">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/printer-icon.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="In &#x110;&#x1a1;n H&#xe0;ng"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInDanhSachActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLuuActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnThemThietBi">
@@ -377,6 +368,9 @@
             <Property name="text" type="java.lang.String" value="Thi&#x1ebf;t b&#x1ecb;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemThietBiActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSuaDonHang">
           <Properties>
@@ -386,6 +380,9 @@
             <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n h&#xe0;ng"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaDonHangActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnXoaThietBi">
           <Properties>
@@ -395,6 +392,9 @@
             <Property name="text" type="java.lang.String" value="Thi&#x1ebf;t b&#x1ecb;"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaThietBiActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -422,6 +422,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableDonHangMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -566,6 +569,9 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cbxLoaiSanPhamPopupMenuWillBecomeInvisible"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -577,22 +583,28 @@
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cbxSanPhamPopupMenuWillBecomeInvisible"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txtBaoHanh">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtGia">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtThanhTien">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -600,6 +612,9 @@
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtSoLuongKeyReleased"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -623,6 +638,9 @@
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="cbxMaDonHangPopupMenuWillBecomeInvisible"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -642,7 +660,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="440" y="240" width="180" height="-1"/>
+          <AbsoluteConstraints x="390" y="240" width="180" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -655,7 +673,41 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="640" y="240" width="141" height="-1"/>
+          <AbsoluteConstraints x="580" y="240" width="190" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnInDonHang">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/icon/printer-icon.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="In &#x110;&#x1a1;n H&#xe0;ng"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInDonHangActionPerformed"/>
+      </Events>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="20" y="280" width="-1" height="-1"/>
+        </Constraint>
+      </Constraints>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lbTrangThai">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="14" style="1"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="0" red="ff" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i!"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="450" y="300" width="670" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
