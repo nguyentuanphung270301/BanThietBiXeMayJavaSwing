@@ -6,9 +6,10 @@ public class KetNoiCoSoDuLieu {
     
     public static Connection layKetNoi(){
         Connection ketNoi = null;
-        String uRL = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyThietBiXeMay";
+        String uRL = "jdbc:sqlserver://localhost:1433;databaseName=QuanLyThietBiXeMay"
+                + ";encrypt=true;trustServerCertificate=true;";
         String userName ="sa";
-        String passWord ="123456";
+        String passWord ="root";
         
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");

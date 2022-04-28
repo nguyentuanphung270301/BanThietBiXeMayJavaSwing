@@ -4,8 +4,9 @@
  */
 package view;
 
+import DAO.ShareData;
 import controller.XuLy;
-import javax.swing.JDesktopPane;
+import controller.DangNhapController;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +15,9 @@ import javax.swing.JOptionPane;
  */
 public class FormDangNhap extends javax.swing.JFrame {
     
+    private final DangNhapController dangNhapController;   
     public XuLy xuLy;
+
     public FormDangNhap() {
         initComponents();
         setLocationRelativeTo(null);
@@ -22,21 +25,19 @@ public class FormDangNhap extends javax.swing.JFrame {
         this.setResizable(false);
         this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setTitle("Đăng nhập");
+
         xuLy = new XuLy();
-        
+        dangNhapController = new DangNhapController();
     }
-    private boolean kiemTraDangNhap(){
-        boolean kq = true;
-        if(txtTenDangNhap.getText().length()==0){
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập tên đăng nhập", "Thông báo",2);
-            return false;
-        }
-        if(String.valueOf(txtMatKhau.getPassword()).length()==0){
-            JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu", "Thông báo",2);
-            return false;
-        }
-        return kq;
+
+    private void kiemTraDangNhap(String tenDangNhap, String matKhau) throws Exception {
+        if (tenDangNhap.length() == 0)
+            throw new Exception("Vui lòng nhập tên đăng nhập");
+
+        if (matKhau.length() == 0)
+            throw new Exception("Vui lòng nhập mật khẩu");
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -147,14 +148,15 @@ public class FormDangNhap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
-        int click = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát khỏi chương trình hay không ?","Thông báo",2);
-        if(click == JOptionPane.OK_OPTION){
+        int click = JOptionPane.showConfirmDialog(null, "Bạn có muốn thoát khỏi chương trình hay không ?", "Thông báo", 2);
+
+        if (click == JOptionPane.OK_OPTION){
             System.exit(0);
+            return;
         }
-        else{
-            if(click == JOptionPane.CANCEL_OPTION){
-                this.setVisible(true);
-            }
+        
+        if (click == JOptionPane.CANCEL_OPTION) {
+            this.setVisible(true);
         }
     }//GEN-LAST:event_btnThoatActionPerformed
 
@@ -165,18 +167,34 @@ public class FormDangNhap extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDoiMatKhauActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        try{
-         if(kiemTraDangNhap()){
-                if(xuLy.DangNhap(txtTenDangNhap.getText(),xuLy.maHoaMatKhau(String.valueOf(txtMatKhau.getPassword())),this)){
-                    JOptionPane.showMessageDialog(this, "Đăng nhập thành công", "Thông báo",1);
+        String tenDangNhap = txtTenDangNhap.getText();
+        String matKhau = String.valueOf(txtMatKhau.getPassword());
+ 
+        try {
+            // Kiem tra dau vao
+            kiemTraDangNhap(tenDangNhap, matKhau);
+
+            // Dang nhap
+            dangNhapController.DangNhap(tenDangNhap, matKhau);
+            JOptionPane.showMessageDialog(this, "Đăng nhập thành công", "Thông báo", 1);
+            
+            // Mo form Nhan vien hoac Quan ly
+            switch (ShareData.nguoiDangNhap.getLoaiTaiKhoan()) {
+                case "Nhân viên" -> {
+                    FormTrangChu_NhanVien trangChu_NhanVien = new FormTrangChu_NhanVien(ShareData.nguoiDangNhap);
+                    trangChu_NhanVien.setVisible(true);
                 }
-                else{
-                    JOptionPane.showMessageDialog(this, "Sai tên đăng nhập hoặc mật khẩu", "Thông báo", 2);
+                case "Quản lý" -> {
+                    FormTrangChu_QuanLy trangChu_QuanLy = new FormTrangChu_QuanLy();
+                    trangChu_QuanLy.setVisible(true);
                 }
+                default -> throw new Exception("Hệ thống gặp sự cố, vui lòng thông báo cho Quản trị viên để được hỗ trợ!");
             }
-        }
-        catch(Exception ex){
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Lỗi", 2);
+        
+            // An form hien tai
+            this.dispose();
+        } catch(Exception ex){
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Thông báo", 2);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
 

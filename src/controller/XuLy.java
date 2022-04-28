@@ -169,7 +169,7 @@ public class XuLy {
         
         String sql="EXEC SP_LAYCHUCVU";
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
-        try{
+        try {
             PreparedStatement ps = ketNoi.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
