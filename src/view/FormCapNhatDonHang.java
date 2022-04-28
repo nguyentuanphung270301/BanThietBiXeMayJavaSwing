@@ -83,7 +83,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
         ktHoaDon();
         String[] arr = {"Mã Thiết Bị", "Số Lượng", "Ngày Đặt", "Thành Tiền"};
         DefaultTableModel modle = new DefaultTableModel(arr, 0);
-        jTable1.setModel(modle);
+        tableDonHang.setModel(modle);
 
         themDH = false;
         suaDonHang = false;
@@ -105,7 +105,6 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
         btnSuaDonHang.setEnabled(false);
         btnXoaDonHang.setEnabled(false);
         btnThemThietBi.setEnabled(false);
-        btnXoaDonHang.setEnabled(false);
         btnThemDonHang.setEnabled(true);
         taiDonDH();
         Disabled();
@@ -785,7 +784,6 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                 JasperViewer.viewReport(print, false);
                 xuLy.chuyenTrangThaiDatHang(MADDH);
                 taiDonDH();
-                taiThietBiDatHang();
                 consistency(MADDH);
             } catch (JRException ex) {
                 ex.printStackTrace();
@@ -852,8 +850,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaDonHangActionPerformed
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
-       
-        if (KH == true) {
+         if (KH == true) {
             if (themDH == true) {
                 if(ktSDT(txtSoDienThoai.getText())== false){
                         JOptionPane.showMessageDialog(this, "Sai định dạng số điện thoại !","Lỗi",2);
@@ -911,7 +908,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                 thanhToan();
                 btnLuu.setEnabled(false);
                 btnThemThietBi.setEnabled(true);
-                lbTrangThai.setText("Sửa linh kiện thành công !!");
+                lbTrangThai.setText("Sửa thiết bị thành công !!");
             }
         }
         ktDonHang();

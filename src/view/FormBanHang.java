@@ -5,20 +5,30 @@
 package view;
 
 import DAO.ImageData;
+import DAO.KetNoiCoSoDuLieu;
 import DAO.ShareData;
 import controller.XuLy;
 import java.awt.Image;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import model.HoaDon;
 import model.LoaiThietBi;
 import model.TaiKhoan;
 import model.ThietBi;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -45,6 +55,9 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
         taiKhoan = new TaiKhoan();
         setData();
         Start();
+        Disabled();
+        taiBangHoaDon();
+        thanhToan();
     }
     private void setData() {
         lbTenNhanVien.setText(ShareData.nguoiDangNhap.getHoTen());
@@ -80,7 +93,7 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
         thanhToan = false;
         hoaDonMoi = false;
         refreshThietBi();
-        //txbNameClassify.setText("");
+        //lbMaHoaDon.setText("");
         txtGia.setText("");
         lbTienDu.setText("0 VND");
         cbxTenSanPham.removeAllItems();
@@ -123,7 +136,7 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
         try{
         thietBi = new ThietBi(xuLy.layThietBiTheoMa(cbxTenSanPham.getSelectedItem().toString()));
         //txbNameProduct.setText(product.getTenSanPham());
-        txtGia.setText(thietBi.getGia());
+        txtGia.setText(xuLyGia(thietBi.getGia()));
         txtBaoHanh.setText(thietBi.getTgBaoHanh());
         if(thietBi.getHinhAnh()!= null ){
                         Image img = ImageData.createImageFromByArray(thietBi.getHinhAnh(), "jpg");
@@ -141,13 +154,13 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
             String[] arr = {"Mã Thiết Bị", "Tên Thiết Bị", "Số Lượng", "Giá"};
             DefaultTableModel model = new DefaultTableModel(arr, 0);
 
-            ArrayList array = xuLy.layHoaDon();
+            ArrayList array = xuLy.layHoaDon(lbMaHoaDon.getText());
             for (int i = 0; i < array.size(); i++) {
                 Vector vector = new Vector();
-                vector.add(((HoaDon) array.get(i)).getMaHoaDon());
+                vector.add(((HoaDon) array.get(i)).getMaThietBi());
                 vector.add(((HoaDon) array.get(i)).getTenThietBi());
                 vector.add(((HoaDon) array.get(i)).getSoLuong());
-                vector.add(((HoaDon) array.get(i)).getThanhTien());
+                vector.add(xuLyGia(((HoaDon) array.get(i)).getThanhTien())+" VNĐ");
 
                 lbMaHoaDon.setText(((HoaDon) array.get(i)).getMaHoaDon().trim());
                 model.addRow(vector);
@@ -159,7 +172,7 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
     }
     private void thanhToan() {
         lbTongTien.setText("0 VNĐ");
-        ArrayList array = xuLy.layHoaDon();
+        ArrayList array = xuLy.layHoaDon(lbMaHoaDon.getText());
         for (int i = 0; i < array.size(); i++) {
             String[] s1 = ((HoaDon) array.get(i)).getThanhTien().trim().split("\\s");
             String[] s2 = lbTongTien.getText().split("\\s");
@@ -190,16 +203,15 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
 
         lbMaHoaDon.setText("HD" + String.valueOf(xuLy.layMaHoaDon()+ 1));
     }
-    private void consistency() {
+    private void consistency(String maHoaDon) {
 
-        ArrayList arrayListBill = xuLy.layHoaDon();
+        ArrayList arrayListBill = xuLy.layHoaDon(maHoaDon);
         for (int i = 0; i < arrayListBill.size(); i++) {
-            String []array=thietBi.getGia().split("\\s");
             thietBi = xuLy.layThietBiTheoMa(((HoaDon) arrayListBill.get(i)).getMaThietBi().trim());
             xuLy.thayDoiSoLuongThietBi(thietBi.getMaThietBi(), thietBi.getSoLuong() - ((HoaDon) arrayListBill.get(i)).getSoLuong());
         }
     }
-       private void checkSLLK() {
+       private void ktSoLuongThietBi() {
         thietBi = new ThietBi(xuLy.layThietBiTheoMa(cbxTenSanPham.getSelectedItem().toString()));
 
         if (thietBi.getSoLuong() == 0) {
@@ -211,6 +223,10 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
             btnLuu.setEnabled(true);
             txtSoLuong.setEnabled(true);
         }
+    }
+       private String xuLyGia(String s){
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        return formatter.format(chuyenSangSo(s));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -261,7 +277,6 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
         lbTrangThai = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1285, 720));
 
         btnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/arrow-back-icon.png"))); // NOI18N
@@ -302,6 +317,15 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
         jLabel5.setText("Số lượng");
 
         cbxTenSanPham.setEnabled(false);
+        cbxTenSanPham.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                cbxTenSanPhamPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
 
         txtSoLuong.setEnabled(false);
         txtSoLuong.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -401,15 +425,30 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
         });
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
-        btnXoa.setText("Xoá SP");
+        btnXoa.setText("Xoá Thiết Bị");
         btnXoa.setEnabled(false);
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save-icon.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.setEnabled(false);
+        btnLuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuuActionPerformed(evt);
+            }
+        });
 
         btnInHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer-icon.png"))); // NOI18N
         btnInHoaDon.setText("Xuất hoá đơn");
+        btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInHoaDonActionPerformed(evt);
+            }
+        });
 
         btnThanhToan.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Pay.png"))); // NOI18N
@@ -501,6 +540,12 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
         jLabel13.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel13.setText("Tiền nhận của khách: ");
 
+        txtTien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTienKeyReleased(evt);
+            }
+        });
+
         jLabel14.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel14.setText("Tiền dư của khách:");
 
@@ -515,6 +560,11 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
                 "Mã thiết bị", "Tên thiết bị", "Số lượng", "Tiền"
             }
         ));
+        tableHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableHoaDonMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableHoaDon);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -614,14 +664,13 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1243, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(450, 450, 450)
-                        .addComponent(lbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1243, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 613, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(308, 308, 308))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -649,25 +698,58 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
                     .addComponent(jLabel14)
                     .addComponent(lbTienDu))
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lbTrangThai)
-                .addGap(36, 36, 36))
+                .addGap(71, 71, 71))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
-        // TODO add your handling code here:
+        Refresh();
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+        if (thanhToan == true) {
+            String[] s = lbTongTien.getText().split("\\s");
+            try {
+                if (!xuLy.ktHoaDon(lbMaHoaDon.getText())) {
+                    consistency(lbMaHoaDon.getText());
+                    xuLy.themHoaDon(lbMaHoaDon.getText(),new java.sql.Date(new SimpleDateFormat("dd/MM/yyyy").parse(lbNgay.getText()).getTime()),ShareData.nguoiDangNhap.getMaNhanVien(), lbGio.getText(),txtTien.getText(),1);
+                    lbTrangThai.setText("Thực hiện thanh toán thành công!");
+                    Disabled();
+                    Sucessful();
+                    btnInHoaDon.setEnabled(true);
+                    btnThem.setEnabled(false);
+                    btnThanhToan.setEnabled(false);
+                    txtTien.setEnabled(false);
+                    taiBangHoaDon();
+                } else {
+                    lbTrangThai.setText("Hóa đơn này đã được thanh toán!");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        } else if (thanhToan == false) {
+            JOptionPane.showMessageDialog(null, "Bạn cần nhập số tiền khách hàng thanh toán !");
+        }
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnHoaDonMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonMoiActionPerformed
-      
+        int Click = JOptionPane.showConfirmDialog(null, "Bạn có muốn tạo 1 hóa đơn bán hàng mới hay không?", "Thông Báo", 2);
+        if (Click == JOptionPane.YES_OPTION) {
+            this.lbTrangThai.setText("Đã tạo hóa đơn mới!");
+            automatedCode();
+            taiBangHoaDon();
+            ktHoaDon();
+            xuLy.themHoaDon(lbMaHoaDon.getText(), 0);
+            Refresh();
+            hoaDonMoi = true;
+            btnThem.setEnabled(true);
+        }
     }//GEN-LAST:event_btnHoaDonMoiActionPerformed
 
     private void btnTrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangChuActionPerformed
@@ -678,7 +760,7 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
 
     private void cbxLoaiSanPhamPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbxLoaiSanPhamPopupMenuWillBecomeInvisible
 
-        taiLoaiThietBi();
+        taiThietBi();
         if (cbxTenSanPham.getItemCount() == 0) {
             cbxTenSanPham.setEnabled(false);
             txtSoLuong.setEnabled(false);
@@ -696,20 +778,20 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
 
         if (txtSoLuong.getText().equals("")) {
             String[] s = txtGia.getText().split("\\s");
-            txtThanhTien.setText("0" + " " + s[1]);
+            txtThanhTien.setText("0" + " VNĐ");
         } else {
             thietBi = xuLy.layThietBiTheoMa(cbxTenSanPham.getSelectedItem().toString());
 
             if ((thietBi.getSoLuong() - Integer.parseInt(txtSoLuong.getText())) < 0) {
                 String[] s = txtGia.getText().split("\\s");
-                txtThanhTien.setText("0" + " " + s[1]);
+                txtThanhTien.setText("0" + " VNĐ");
 
                 lbTrangThai.setText("Số lượng sản phẩm bán không được vượt quá số lượng hàng trong kho!!");
                 btnLuu.setEnabled(false);
             } else {
                 int soluong = Integer.parseInt(txtSoLuong.getText().toString());
                 String[] s = txtGia.getText().split("\\s");
-                txtThanhTien.setText(formatter.format(chuyenSangSo(s[0]) * soluong) + " " + s[1]);
+                txtThanhTien.setText(formatter.format(chuyenSangSo(s[0]) * soluong) + " VNĐ");
 
                 lbTrangThai.setText("Số lượng sản phẩm bán hợp lệ!!");
                 btnLuu.setEnabled(true);
@@ -735,6 +817,115 @@ public class FormBanHang extends javax.swing.JFrame implements Runnable{
         btnLuu.setEnabled(true);
         txtSoLuong.setEnabled(true);
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        int Click = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa thiết bị khỏi hóa đơn hay không?", "Thông Báo", 2);
+        if (Click == JOptionPane.YES_OPTION) {
+            xuLy.xoaThietBiRaKhoiHoaDon(lbMaHoaDon.getText().toString(),cbxTenSanPham.getSelectedItem().toString());
+            this.lbTrangThai.setText("Xóa linh kiện thành công!");
+            Refresh();
+            taiBangHoaDon();
+            Sucessful();
+            ktHoaDon();
+            thanhToan();
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
+        String []array=cbxTenSanPham.getSelectedItem().toString().replace("(", "").replace(")", "").split("\\s");
+        String[] thanhTien = txtThanhTien.getText().split("\\s");
+         if (Them == true) {
+            if (xuLy.ktThietBiTrongHoaDon(lbMaHoaDon.getText().toString(),array[0])) {
+                xuLy.themThietBiVaoHoaDon(lbMaHoaDon.getText(),array[0] ,Integer.parseInt(txtSoLuong.getText()), thanhTien[0]);
+                lbTrangThai.setText("Thêm thiết bị thành công!");
+                Disabled();
+                Sucessful();
+                taiBangHoaDon();
+            } else {
+                lbTrangThai.setText("Thiết bị đã tồn tại trong hóa đơn");
+            }
+        } else if (Sua == true) {
+            int Click = tableHoaDon.getSelectedRow();
+            TableModel model = tableHoaDon.getModel();
+
+            xuLy.suaThietBiHoaDon(Integer.parseInt(txtSoLuong.getText()), txtThanhTien.getText(), lbMaHoaDon.getText(), model.getValueAt(Click, 1).toString().trim());
+            Disabled();
+            Sucessful();
+            lbTrangThai.setText("Lưu thay đổi thành công!");
+            taiBangHoaDon();
+        }
+        ktHoaDon();
+        thanhToan();
+    }//GEN-LAST:event_btnLuuActionPerformed
+
+    private void txtTienKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTienKeyReleased
+        DecimalFormat formatter = new DecimalFormat("###,###,###");
+        txtTien.setText(cutChar(txtTien.getText()));
+        if (txtTien.getText().equals("")) {
+            String[] s = lbTongTien.getText().split("\\s");
+            lbTienDu.setText("0" + " " + s[1]);
+        } else {
+            txtTien.setText(formatter.format(chuyenSangSo(txtTien.getText())));
+
+            String s1 = txtTien.getText();
+            String[] s2 = lbTongTien.getText().split("\\s");
+
+            if ((chuyenSangSo(s1) - chuyenSangSo(s2[0])) >= 0) {
+                lbTienDu.setText(formatter.format((chuyenSangSo(s1) - chuyenSangSo(s2[0]))) + " " + s2[1]);
+                lbTrangThai.setText("Số tiền khách hàng đưa đã hợp lệ!");
+                thanhToan = true;
+            } else {
+
+                lbTienDu.setText(formatter.format((chuyenSangSo(s1) - chuyenSangSo(s2[0]))) + " " + s2[1]);
+                lbTrangThai.setText("Số tiền khách hàng đưa nhỏ hơn tổng tiền mua hàng trong hóa đơn!");
+                thanhToan = false;
+            }
+        }
+    }//GEN-LAST:event_txtTienKeyReleased
+
+    private void tableHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableHoaDonMouseClicked
+        cbxTenSanPham.removeAllItems();
+
+        int Click = tableHoaDon.getSelectedRow();
+        TableModel model = tableHoaDon.getModel();
+        cbxTenSanPham.addItem(model.getValueAt(Click, 1).toString() +" ("+xuLy.layThietBiTheoMa(model.getValueAt(Click, 0).toString()).getTenThietBi()+ ")");
+        txtSoLuong.setText(model.getValueAt(Click, 2).toString());
+        txtThanhTien.setText(model.getValueAt(Click, 3).toString());
+
+        taiThongTinThietBi();
+
+        btnSua.setEnabled(true);
+        btnXoa.setEnabled(true);
+        btnThem.setEnabled(true);
+    }//GEN-LAST:event_tableHoaDonMouseClicked
+
+    private void cbxTenSanPhamPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbxTenSanPhamPopupMenuWillBecomeInvisible
+        taiThongTinThietBi();
+        txtSoLuong.setEnabled(true);
+        ktSoLuongThietBi();
+    }//GEN-LAST:event_cbxTenSanPhamPopupMenuWillBecomeInvisible
+
+    private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
+        int Click = JOptionPane.showConfirmDialog(null, "Bạn có muốn xuất hoá đơn hay không?", "Thông Báo", 2);
+        String MAHOADON = lbMaHoaDon.getText();
+        String TIENDU = lbTienDu.getText();
+        if (Click == JOptionPane.YES_OPTION) {
+        try {
+            HashMap hash = new HashMap();
+            hash.put("MAHOADON", MAHOADON);
+            hash.put("TIENDU", TIENDU);
+            JasperReport report = JasperCompileManager.compileReport("src\\View\\HoaDon.jrxml");
+
+            JasperPrint print = JasperFillManager.fillReport(report, hash, KetNoiCoSoDuLieu.layKetNoi());
+
+            JasperViewer.viewReport(print, false);
+            taiBangHoaDon();
+            Refresh();
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+        }
+    }//GEN-LAST:event_btnInHoaDonActionPerformed
 
     /**
      * @param args the command line arguments

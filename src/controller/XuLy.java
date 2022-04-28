@@ -29,15 +29,19 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JFrame;
+import javax.swing.Timer;
 import model.ChiTietDatHang;
+import model.ChiTietNhapHang;
 import model.ChucVu;
 import model.DatHang;
 import model.HoaDon;
 import model.LoaiThietBi;
 import model.NhaSanXuat;
 import model.NhanVien;
+import model.NhapHang;
 import model.TaiKhoan;
 import model.ThietBi;
+import model.ThongKe;
 import org.eclipse.jdt.internal.compiler.ast.ThisReference;
 import view.FormTrangChu_NhanVien;
 import view.FormTrangChu_QuanLy;
@@ -47,11 +51,14 @@ public class XuLy {
     private ChucVu chucVu;
     private NhanVien nhanvien;
     private DatHang datHang;
+    private NhapHang nhapHang;
     private LoaiThietBi loaiThietBi;
     private NhaSanXuat nhaSanXuat;
     private ThietBi thietBi;
     private  ChiTietDatHang chiTietDatHang;
+    private ChiTietNhapHang chiTietNhapHang;
     private HoaDon hoaDon;
+    private ThongKe thongKe;
     private Random generator = new Random();
      public boolean DangNhap(String tenDangNhap, String matKhau, JFrame jFrame) throws SQLException{
         boolean ketQua = false;
@@ -1066,13 +1073,14 @@ public class XuLy {
             ex.printStackTrace();
         }
     }
-    public ArrayList layHoaDon() {
+    public ArrayList layHoaDon(String maHoaDon) {
 
         ArrayList array = new ArrayList();
-        String sql = "EXEC SP_LAYHOADON";
+        String sql = "EXEC SP_LAYHOADON ?";
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
         try {
             PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maHoaDon);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 array.add(hoaDon = new HoaDon(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
@@ -1110,5 +1118,390 @@ public class XuLy {
             e.printStackTrace();
         }
         return max;
+    }
+    public void xoaThietBiRaKhoiHoaDon(String maHoaDon ,String maThietBi) {
+        String sql = "EXEC SP_XOATHIETBIRAKHOIHOADON ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maHoaDon);
+            ps.setString(2, maThietBi);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public boolean ktThietBiTrongHoaDon(String maHoaDon, String maThietBi) {
+        String sql = "EXEC SP_KTTHIETBITRONGHOADON ?,? ";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        boolean ketQua = true;
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maHoaDon);
+            ps.setString(2, maThietBi);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+    public void themThietBiVaoHoaDon(String maHoaDon, String maThietBi,int soLuong, String thanhTien) {
+        String sql = "EXEC SP_THEMTHIETBIVAOHOADON ?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maHoaDon);
+            ps.setString(2, maThietBi);
+            ps.setInt(3, soLuong);
+            ps.setString(4, thanhTien);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void suaThietBiHoaDon(int soLuong, String thanhTien,String maHoaDon, String maThietBi) {
+        String sql = "SP_SUATHIETBITRONGHOADON ?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setInt(1, soLuong);
+            ps.setString(2, thanhTien);
+            ps.setString(3, maHoaDon);
+            ps.setString(4, maThietBi);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public boolean ktHoaDon(String maHoaDon) {
+        String sql = "SELECT * FROM PHIEUXUAT WHERE MAPX = ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        boolean ketQua = true;
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maHoaDon);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+    public void themHoaDon(String maHoaDon, int trangThai) {
+        String sql = "EXEC SP_THEMHOADON ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maHoaDon);
+            ps.setInt(2, trangThai);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }  
+    public void themHoaDon(String maHoaDon,Date ngayBan,String maNhanVien,String gioBan,String tienNhan ,int trangThai) {
+        String sql = "EXEC SP_THEMTHONGTINHOADON ?,?,?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maHoaDon);
+            ps.setDate(2, ngayBan);
+            ps.setString(3, maNhanVien);
+            ps.setString(4, gioBan);
+            ps.setString(5, tienNhan);
+            ps.setInt(6, trangThai);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }  
+    public ArrayList layThongKe() {
+
+        ArrayList arry = new ArrayList();
+        String sql = "EXEC SP_THONGKETDATHANG";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                arry.add(thongKe = new ThongKe(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getString(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arry;
+    }
+    public ArrayList layThongKeHoaDon() {
+
+        ArrayList arry = new ArrayList();
+        String sql = "EXEC SP_THONGKEHOADON";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                arry.add(thongKe = new ThongKe(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getString(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arry;
+    }
+     public ArrayList layThongKe(Date date1, Date date2) {
+
+        ArrayList arry = new ArrayList();
+        String sql = "EXEC SP_THONGKEDATHANGTHEONGAY ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setDate(1, date1);
+            ps.setDate(2, date2);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                arry.add(thongKe = new ThongKe(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getString(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arry;
+    }
+      public ArrayList layThongKeHoaDon(Date date1, Date date2) {
+
+        ArrayList arry = new ArrayList();
+        String sql = "EXEC SP_THONGKEHOADONTHEONGAY ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setDate(1, date1);
+            ps.setDate(2, date2);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                arry.add(thongKe = new ThongKe(rs.getString(1), rs.getString(2), rs.getDate(3), rs.getString(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arry;
+    }
+      public ArrayList layNhapHang() {
+        ArrayList array = new ArrayList();
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        String sql = "SELECT * FROM PHIEUNHAP WHERE TRANGTHAI = 0";
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                array.add(nhapHang = new NhapHang(rs.getString(1).trim(), rs.getDate(2), rs.getString(3).trim(), rs.getInt(4)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return array;
+    }
+       public boolean ktmaPhieuNhap() {
+        String sql = "SELECT * FROM PHIEUNHAP";
+        boolean ketQua = false;
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = true;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+        public int layMaPhieuNhap() {
+        int max = 0;
+        ArrayList list = new ArrayList();
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        if (ktmaPhieuNhap()) {
+            String sql = "SELECT * FROM PHIEUNHAP";
+            try {
+                PreparedStatement ps = ketNoi.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    list.add(rs.getString("MAPN").trim().substring(2, rs.getString("MAPN").trim().length()));
+                }
+                if (list.size() == 0) {
+                    return list.size();
+                } else {
+                    for (int i = 0; i < list.size(); i++) {
+                        if (max < Integer.parseInt(list.get(i).toString())) {
+                            max = Integer.parseInt(list.get(i).toString());
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } 
+        return max;
+    }
+        public NhapHang layThongTinNhapHang(String maPhieuNhap) {
+        String sql = "EXEC SP_LAYTHONGTINNAHPHANG ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+           PreparedStatement ps = ketNoi.prepareStatement(sql);
+           ps.setString(1, maPhieuNhap);
+           ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                nhapHang = new NhapHang(rs.getString(1).trim(), rs.getDate(2), rs.getString(3).trim(), rs.getInt(4));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nhapHang;
+    }
+        public ArrayList layThietBiNhap(String maPhieuNhap) {
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        ArrayList array = new ArrayList();
+        String sql = "EXEC SP_LAYCTNHAPHANG ?";
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                array.add(chiTietNhapHang = new ChiTietNhapHang(rs.getString(1).trim(), rs.getString(2).trim(), rs.getInt(3), rs.getString(4).trim()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return array;
+    }
+        public ArrayList layPhieuNhap(String maPhieuNhap) {
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        ArrayList array = new ArrayList();
+        String sql = "EXEC SP_LAYPHIEUNHAP ?";
+        
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                array.add(hoaDon = new HoaDon(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return array;
+    }
+    public void xoaThietBiKhoiPhieuNhap(String maPhieuNhap, String maThietBi) {
+        String sql = "EXEC SP_XOATHIETBIRAKHOIPHIEUNHAP ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ps.setString(2, maThietBi);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void xoaPhieuNhap(String maPhieuNhap) {
+        String sql = "EXEC SP_XOAPHIEUNHAP ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ps.executeUpdate();
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void themPhieuNhapMoi(String maDonHang ,Date ngayDat , String maNhanVien , int trangThai) {
+        String sql = "EXEC SP_THEMPHIEUNHAPMOI ?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maDonHang);
+            ps.setString(3, maNhanVien);
+            ps.setDate(2, ngayDat);
+            ps.setInt(4, trangThai);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void suaPhieuNhap( String maPhieuNhap, Date ngayDat) {
+        String sql = "EXEC SP_SUAPHIEUNHAP ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ps.setDate(2, ngayDat);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public boolean ktThietBiNhapHang(String maPhieuNhap, String maThietBi) {
+        String sql = "EXEC SP_KTTHIETBINHAPHANG ?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        boolean ketQua = true;
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ps.setString(2, maThietBi);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+    public void themThietBiNhapHang(String maPhieuNhap, String maThietBi, int soLuong, String thanhTien) {
+        String sql = "EXEC SP_THEMTHIETBINHAPHANG ?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ps.setString(2, maThietBi);
+            ps.setInt(3, soLuong);
+            ps.setString(4, thanhTien);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void suaThietBiNhapHang(String maPhieuNhap, String maThietBi, int soLuong, String thanhTien) {
+        String sql = "EXEC SP_SUATHIETBINHAPHANG ?,?,?,?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ps.setString(2, maThietBi);
+            ps.setInt(3, soLuong);
+             ps.setString(4, thanhTien);
+            ps.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+    public void chuyenTrangThaiNhapHang(String maPhieuNhap){
+        String sql = "EXEC SP_CHUYENTRANGTHAINHAPHANG ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try{
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maPhieuNhap);
+            ps.executeUpdate();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }
