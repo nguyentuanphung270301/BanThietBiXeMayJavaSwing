@@ -79,7 +79,7 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 21, 925, 63));
 
         btnBanHang.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Cash-register-icon.png"))); // NOI18N
+        btnBanHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/sell-72.png"))); // NOI18N
         btnBanHang.setText("Bán hàng");
         btnBanHang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnBanHang.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -92,7 +92,7 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
         getContentPane().add(btnBanHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 222, 150, 130));
 
         btnCapNhatSanPham.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnCapNhatSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Ecommerce-Product-icon.png"))); // NOI18N
+        btnCapNhatSanPham.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/garage-72.png"))); // NOI18N
         btnCapNhatSanPham.setText("Quản lý thiết bị");
         btnCapNhatSanPham.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatSanPham.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -105,7 +105,7 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
         getContentPane().add(btnCapNhatSanPham, new org.netbeans.lib.awtextra.AbsoluteConstraints(202, 222, 138, 130));
 
         btnCapNhatDonHang.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnCapNhatDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cart-icon.png"))); // NOI18N
+        btnCapNhatDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/order-72.png"))); // NOI18N
         btnCapNhatDonHang.setText("Cập nhật đơn hàng");
         btnCapNhatDonHang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatDonHang.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -118,7 +118,7 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
         getContentPane().add(btnCapNhatDonHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(358, 222, -1, 130));
 
         btnDangXuat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Apps-session-logout-icon.png"))); // NOI18N
+        btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/sign-out-72.png"))); // NOI18N
         btnDangXuat.setText("Đăng xuất");
         btnDangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDangXuat.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -131,7 +131,7 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
         getContentPane().add(btnDangXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 222, 157, 130));
 
         btnThoat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Windows-Close-Program-icon (1).png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-1-icon-72x72.png"))); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnThoat.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -176,10 +176,8 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblChucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 18, Short.MAX_VALUE)))
+                    .addComponent(lblHoTen, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                    .addComponent(lblChucVu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -256,7 +254,7 @@ public class FormTrangChu_NhanVien extends javax.swing.JFrame implements Runnabl
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

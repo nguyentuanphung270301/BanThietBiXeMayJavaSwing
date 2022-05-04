@@ -79,7 +79,7 @@ public class FormTrangChu_QuanLy extends javax.swing.JFrame implements Runnable{
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 925, 63));
 
         btnCapNhatNhanVien.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnCapNhatNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Apps-system-users-icon.png"))); // NOI18N
+        btnCapNhatNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/employees-72.png"))); // NOI18N
         btnCapNhatNhanVien.setText("Quản lý nhân viên");
         btnCapNhatNhanVien.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatNhanVien.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -92,7 +92,7 @@ public class FormTrangChu_QuanLy extends javax.swing.JFrame implements Runnable{
         getContentPane().add(btnCapNhatNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, 113));
 
         btnThongKe.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/cash-icon.png"))); // NOI18N
+        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/revenues-72.png"))); // NOI18N
         btnThongKe.setText("Thống kê doanh thu");
         btnThongKe.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnThongKe.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -105,7 +105,7 @@ public class FormTrangChu_QuanLy extends javax.swing.JFrame implements Runnable{
         getContentPane().add(btnThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, 113));
 
         btnCapNhatTaiKhoan.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnCapNhatTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/User-icon.png"))); // NOI18N
+        btnCapNhatTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/ac-manager-72.png"))); // NOI18N
         btnCapNhatTaiKhoan.setText("Cập nhật tài khoản");
         btnCapNhatTaiKhoan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCapNhatTaiKhoan.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -118,7 +118,7 @@ public class FormTrangChu_QuanLy extends javax.swing.JFrame implements Runnable{
         getContentPane().add(btnCapNhatTaiKhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, 157, 113));
 
         btnDangXuat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Apps-session-logout-icon.png"))); // NOI18N
+        btnDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/sign-out-72.png"))); // NOI18N
         btnDangXuat.setText("Đăng xuất");
         btnDangXuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnDangXuat.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -131,7 +131,7 @@ public class FormTrangChu_QuanLy extends javax.swing.JFrame implements Runnable{
         getContentPane().add(btnDangXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 250, 155, 113));
 
         btnThoat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Windows-Close-Program-icon (1).png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-1-icon-72x72.png"))); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnThoat.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -266,7 +266,7 @@ public class FormTrangChu_QuanLy extends javax.swing.JFrame implements Runnable{
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

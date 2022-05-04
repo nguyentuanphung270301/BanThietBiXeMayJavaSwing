@@ -337,11 +337,10 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/arrow-back-icon.png"))); // NOI18N
+        btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/return-48.png"))); // NOI18N
         btnTrangChu.setText("Trang Chủ");
         btnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -437,14 +436,14 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 88, 760, 120));
 
-        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Refresh-icon.png"))); // NOI18N
+        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/refresh-32.png"))); // NOI18N
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiActionPerformed(evt);
             }
         });
 
-        btnThemDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/math-add-icon.png"))); // NOI18N
+        btnThemDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plus-math-32.png"))); // NOI18N
         btnThemDonHang.setText("Đơn hàng");
         btnThemDonHang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -452,7 +451,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
             }
         });
 
-        btnSuaThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pencil-icon.png"))); // NOI18N
+        btnSuaThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/edit-32.png"))); // NOI18N
         btnSuaThietBi.setText("Thiết bị");
         btnSuaThietBi.setEnabled(false);
         btnSuaThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -461,7 +460,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
             }
         });
 
-        btnXoaDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
+        btnXoaDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-32.png"))); // NOI18N
         btnXoaDonHang.setText("Đơn hàng");
         btnXoaDonHang.setEnabled(false);
         btnXoaDonHang.addActionListener(new java.awt.event.ActionListener() {
@@ -470,7 +469,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
             }
         });
 
-        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save-icon.png"))); // NOI18N
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/save-32.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.setEnabled(false);
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
@@ -479,7 +478,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
             }
         });
 
-        btnThemThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/math-add-icon.png"))); // NOI18N
+        btnThemThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plus-math-32.png"))); // NOI18N
         btnThemThietBi.setText("Thiết bị");
         btnThemThietBi.setEnabled(false);
         btnThemThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -488,7 +487,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
             }
         });
 
-        btnSuaDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pencil-icon.png"))); // NOI18N
+        btnSuaDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/edit-32.png"))); // NOI18N
         btnSuaDonHang.setText("Đơn hàng");
         btnSuaDonHang.setEnabled(false);
         btnSuaDonHang.addActionListener(new java.awt.event.ActionListener() {
@@ -497,7 +496,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
             }
         });
 
-        btnXoaThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
+        btnXoaThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-32.png"))); // NOI18N
         btnXoaThietBi.setText("Thiết bị");
         btnXoaThietBi.setEnabled(false);
         btnXoaThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -711,7 +710,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
         lblTongTien.setText("0 VNĐ");
         getContentPane().add(lblTongTien, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, 190, -1));
 
-        btnInDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer-icon.png"))); // NOI18N
+        btnInDonHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/print-32.png"))); // NOI18N
         btnInDonHang.setText("In Đơn Hàng");
         btnInDonHang.setEnabled(false);
         btnInDonHang.addActionListener(new java.awt.event.ActionListener() {
@@ -993,7 +992,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

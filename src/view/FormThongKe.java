@@ -4,6 +4,7 @@
  */
 package view;
 
+import DAO.KetNoiCoSoDuLieu;
 import controller.XuLy;
 import java.awt.GridLayout;
 import java.text.DecimalFormat;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Vector;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -101,7 +103,7 @@ public class FormThongKe extends javax.swing.JFrame {
             vector.add(((ThongKe) array.get(i)).getMaHoaDon());
             vector.add(((ThongKe) array.get(i)).getHoTenNhanVien());
             vector.add(((ThongKe) array.get(i)).getNgayBan());
-            vector.add(((ThongKe) array.get(i)).getTongTien());
+            vector.add(xuLyGia(((ThongKe) array.get(i)).getTongTien()));
 
             model.addRow(vector);
             String[] s = ((ThongKe) array.get(i)).getTongTien().trim().split("\\s");
@@ -199,6 +201,7 @@ public class FormThongKe extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnTrangChu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -208,6 +211,9 @@ public class FormThongKe extends javax.swing.JFrame {
         txtDenNgay = new com.toedter.calendar.JDateChooser();
         btnLamMoi = new javax.swing.JButton();
         btnThongKe = new javax.swing.JButton();
+        btnInThongKe = new javax.swing.JButton();
+        rdDonDatHang = new javax.swing.JRadioButton();
+        rdHoaDon = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableThongKe = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
@@ -243,23 +249,41 @@ public class FormThongKe extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 124, -1, -1));
         jPanel1.add(txtDenNgay, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, 216, 30));
 
-        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Refresh-icon.png"))); // NOI18N
+        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/refresh-32.png"))); // NOI18N
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLamMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 73, 149, 73));
+        jPanel1.add(btnLamMoi, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 149, 73));
 
         btnThongKe.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Revenue.png"))); // NOI18N
+        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/revenue-32.png"))); // NOI18N
         btnThongKe.setText("Thống Kê");
         btnThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThongKeActionPerformed(evt);
             }
         });
-        jPanel1.add(btnThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 70, -1, -1));
+        jPanel1.add(btnThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 40, 170, 70));
+
+        btnInThongKe.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnInThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/print-32.png"))); // NOI18N
+        btnInThongKe.setText("In Thống Kê");
+        btnInThongKe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInThongKeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnInThongKe, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 40, 150, 70));
+
+        buttonGroup1.add(rdDonDatHang);
+        rdDonDatHang.setText("Đơn Đặt Hàng");
+        jPanel1.add(rdDonDatHang, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 120, -1, -1));
+
+        buttonGroup1.add(rdHoaDon);
+        rdHoaDon.setText("Hoá Đơn");
+        jPanel1.add(rdHoaDon, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 120, -1, -1));
 
         tableThongKe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -339,8 +363,13 @@ public class FormThongKe extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        if(((JTextField)txtTuNgay.getDateEditor().getUiComponent()).getText().equals("") || ((JTextField)txtDenNgay.getDateEditor().getUiComponent()).getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn khoảng thời gian thống kê","Thông Báo",1);
+        }
+        else{
         taiThongKe();
         bieuDo();
+        }
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTrangChuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrangChuActionPerformed
@@ -348,6 +377,46 @@ public class FormThongKe extends javax.swing.JFrame {
         trangChu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnTrangChuActionPerformed
+
+    private void btnInThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInThongKeActionPerformed
+        int Click = JOptionPane.showConfirmDialog(null, "Bạn có muốn in thống kê hay không?", "Thông Báo", 2);
+        String tuNgay = ((JTextField)txtTuNgay.getDateEditor().getUiComponent()).getText();
+        String denNgay = ((JTextField)txtDenNgay.getDateEditor().getUiComponent()).getText();
+        if(Click == JOptionPane.YES_OPTION){
+        if(rdDonDatHang.isSelected() == false && rdHoaDon.isSelected() == false){
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn loại đơn cần in thống kê","Thông báo",1);
+        }
+        else if(((JTextField)txtTuNgay.getDateEditor().getUiComponent()).getText().equals("") || ((JTextField)txtDenNgay.getDateEditor().getUiComponent()).getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn khoảng thời gian thống kê","Thông Báo",1);
+        }
+        else if(rdDonDatHang.isSelected() == true){
+            try{
+                HashMap hash = new HashMap();
+                hash.put("TUNGAY",tuNgay );
+                hash.put("DENNGAY", denNgay);
+                JasperReport report = JasperCompileManager.compileReport("src\\view\\ThongKe_DonDatHang.jrxml");
+                JasperPrint print = JasperFillManager.fillReport(report, hash, KetNoiCoSoDuLieu.layKetNoi());
+                JasperViewer.viewReport(print, false);
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        else if(rdHoaDon.isSelected() == true){
+            try{
+                HashMap hash = new HashMap();
+                hash.put("TUNGAY",tuNgay );
+                hash.put("DENNGAY", denNgay);
+                JasperReport report = JasperCompileManager.compileReport("src\\view\\ThongKe_HoaDon.jrxml");
+                JasperPrint print = JasperFillManager.fillReport(report, hash, KetNoiCoSoDuLieu.layKetNoi());
+                JasperViewer.viewReport(print, false);
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+            }
+        }
+        }
+    }//GEN-LAST:event_btnInThongKeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -360,7 +429,7 @@ public class FormThongKe extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -385,9 +454,11 @@ public class FormThongKe extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInThongKe;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTrangChu;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -397,6 +468,8 @@ public class FormThongKe extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbSoHoaDon;
     private javax.swing.JLabel lbTongDoanhThu;
+    private javax.swing.JRadioButton rdDonDatHang;
+    private javax.swing.JRadioButton rdHoaDon;
     private javax.swing.JTable tableThongKe;
     private com.toedter.calendar.JDateChooser txtDenNgay;
     private com.toedter.calendar.JDateChooser txtTuNgay;

@@ -77,7 +77,7 @@
           <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/arrow-back-icon.png"/>
+          <Image iconType="3" name="/icon_new/return-48.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Trang Ch&#x1ee7;"/>
       </Properties>
@@ -314,7 +314,7 @@
         <Component class="javax.swing.JButton" name="btnThem">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/math-add-icon.png"/>
+              <Image iconType="3" name="/icon_new/plus-math-32.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="T&#x1ea1;o t&#xe0;i kho&#x1ea3;n"/>
           </Properties>
@@ -325,7 +325,7 @@
         <Component class="javax.swing.JButton" name="btnSua">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/pencil-icon.png"/>
+              <Image iconType="3" name="/icon_new/edit-32.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -337,7 +337,7 @@
         <Component class="javax.swing.JButton" name="btnXoa">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/Recycle-Bin-icon.png"/>
+              <Image iconType="3" name="/icon_new/delete-32.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Xo&#xe1;"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -349,7 +349,7 @@
         <Component class="javax.swing.JButton" name="btnLuu">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/Save-icon.png"/>
+              <Image iconType="3" name="/icon_new/save-32.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
             <Property name="enabled" type="boolean" value="false"/>
@@ -361,7 +361,7 @@
         <Component class="javax.swing.JButton" name="btnLamMoi">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/Refresh-icon.png"/>
+              <Image iconType="3" name="/icon_new/refresh-32.png"/>
             </Property>
           </Properties>
           <Events>

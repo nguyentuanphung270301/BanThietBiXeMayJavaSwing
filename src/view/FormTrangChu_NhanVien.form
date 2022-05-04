@@ -54,7 +54,7 @@
           <Font name="Arial" size="14" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/Cash-register-icon.png"/>
+          <Image iconType="3" name="/icon_new/sell-72.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="B&#xe1;n h&#xe0;ng"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -76,7 +76,7 @@
           <Font name="Arial" size="14" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/Ecommerce-Product-icon.png"/>
+          <Image iconType="3" name="/icon_new/garage-72.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; thi&#x1ebf;t b&#x1ecb;"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -98,7 +98,7 @@
           <Font name="Arial" size="14" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/cart-icon.png"/>
+          <Image iconType="3" name="/icon_new/order-72.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="C&#x1ead;p nh&#x1ead;t &#x111;&#x1a1;n h&#xe0;ng"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -120,7 +120,7 @@
           <Font name="Arial" size="14" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/Apps-session-logout-icon.png"/>
+          <Image iconType="3" name="/icon_new/sign-out-72.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng xu&#x1ea5;t"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -142,7 +142,7 @@
           <Font name="Arial" size="14" style="0"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/Windows-Close-Program-icon (1).png"/>
+          <Image iconType="3" name="/icon_new/delete-1-icon-72x72.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Tho&#xe1;t"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -199,11 +199,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblHoTen" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="lblChucVu" min="-2" pref="146" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="lblHoTen" pref="164" max="32767" attributes="0"/>
+                      <Component id="lblChucVu" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">

@@ -786,14 +786,14 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 13, 1300, 170));
 
-        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Refresh-icon.png"))); // NOI18N
+        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/refresh-32.png"))); // NOI18N
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiActionPerformed(evt);
             }
         });
 
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/math-add-icon.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plus-math-32.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -801,7 +801,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pencil-icon.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/edit-32.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setEnabled(false);
         btnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -810,7 +810,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-32.png"))); // NOI18N
         btnXoa.setText("Xoá");
         btnXoa.setEnabled(false);
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -819,7 +819,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save-icon.png"))); // NOI18N
+        btnLuu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/save-32.png"))); // NOI18N
         btnLuu.setText("Lưu");
         btnLuu.setEnabled(false);
         btnLuu.addActionListener(new java.awt.event.ActionListener() {
@@ -828,7 +828,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnInDanhSach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer-icon.png"))); // NOI18N
+        btnInDanhSach.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/print-32.png"))); // NOI18N
         btnInDanhSach.setText("In Danh Sách");
         btnInDanhSach.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -944,14 +944,14 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         txtLoaiThietBi.setEnabled(false);
         jPanel4.add(txtLoaiThietBi, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 60, 190, 30));
 
-        btnLamMoi2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Refresh-icon.png"))); // NOI18N
+        btnLamMoi2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/refresh-32.png"))); // NOI18N
         btnLamMoi2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoi2ActionPerformed(evt);
             }
         });
 
-        btnThemLoaiThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/math-add-icon.png"))); // NOI18N
+        btnThemLoaiThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plus-math-32.png"))); // NOI18N
         btnThemLoaiThietBi.setText("Thêm");
         btnThemLoaiThietBi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -959,7 +959,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnSuaLoaiThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pencil-icon.png"))); // NOI18N
+        btnSuaLoaiThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/edit-32.png"))); // NOI18N
         btnSuaLoaiThietBi.setText("Sửa");
         btnSuaLoaiThietBi.setEnabled(false);
         btnSuaLoaiThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -968,7 +968,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnXoaLoaiThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
+        btnXoaLoaiThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-32.png"))); // NOI18N
         btnXoaLoaiThietBi.setText("Xoá");
         btnXoaLoaiThietBi.setEnabled(false);
         btnXoaLoaiThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -977,7 +977,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnLuuLoaiThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save-icon.png"))); // NOI18N
+        btnLuuLoaiThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/save-32.png"))); // NOI18N
         btnLuuLoaiThietBi.setText("Lưu");
         btnLuuLoaiThietBi.setEnabled(false);
         btnLuuLoaiThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -1073,14 +1073,14 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel9.setText("Địa chỉ");
 
-        btnLamMoi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Refresh-icon.png"))); // NOI18N
+        btnLamMoi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/refresh-32.png"))); // NOI18N
         btnLamMoi1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoi1ActionPerformed(evt);
             }
         });
 
-        btnThemNhaSanXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/math-add-icon.png"))); // NOI18N
+        btnThemNhaSanXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plus-math-32.png"))); // NOI18N
         btnThemNhaSanXuat.setText("Thêm");
         btnThemNhaSanXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1088,7 +1088,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnSuaNhaSanXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pencil-icon.png"))); // NOI18N
+        btnSuaNhaSanXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/edit-32.png"))); // NOI18N
         btnSuaNhaSanXuat.setText("Sửa");
         btnSuaNhaSanXuat.setEnabled(false);
         btnSuaNhaSanXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -1097,7 +1097,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnXoaNhaSanXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
+        btnXoaNhaSanXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-32.png"))); // NOI18N
         btnXoaNhaSanXuat.setText("Xoá");
         btnXoaNhaSanXuat.setEnabled(false);
         btnXoaNhaSanXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -1106,7 +1106,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
 
-        btnLuuNhaSanXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save-icon.png"))); // NOI18N
+        btnLuuNhaSanXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/save-32.png"))); // NOI18N
         btnLuuNhaSanXuat.setText("Lưu");
         btnLuuNhaSanXuat.setEnabled(false);
         btnLuuNhaSanXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -1319,7 +1319,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnThemPhieuNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnThemPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/New.png"))); // NOI18N
+        btnThemPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/add-bill-32.png"))); // NOI18N
         btnThemPhieuNhap.setText(" Phiếu Nhập");
         btnThemPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1328,10 +1328,10 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         });
 
         btnLamMoiPhieuNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnLamMoiPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Refresh-icon.png"))); // NOI18N
+        btnLamMoiPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/refresh-32.png"))); // NOI18N
 
         btnSuaPhieuNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSuaPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pencil-icon.png"))); // NOI18N
+        btnSuaPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/edit-32.png"))); // NOI18N
         btnSuaPhieuNhap.setText("Phiếu nhập");
         btnSuaPhieuNhap.setEnabled(false);
         btnSuaPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -1341,7 +1341,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         });
 
         btnXoaPhieuNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnXoaPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
+        btnXoaPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-32.png"))); // NOI18N
         btnXoaPhieuNhap.setText("Phiếu nhập");
         btnXoaPhieuNhap.setEnabled(false);
         btnXoaPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -1356,13 +1356,13 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btnSuaPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(btnLamMoiPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnThemPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoaPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSuaPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLamMoiPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnXoaPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThemPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
@@ -1373,16 +1373,16 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                     .addComponent(btnLamMoiPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnThemPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnXoaPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSuaPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSuaPhieuNhap)
+                    .addComponent(btnXoaPhieuNhap, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnThemThietBi.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnThemThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/New.png"))); // NOI18N
+        btnThemThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/plus-math-32.png"))); // NOI18N
         btnThemThietBi.setText("Thiết Bị");
         btnThemThietBi.setEnabled(false);
         btnThemThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -1392,7 +1392,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         });
 
         btnSuaThietBi.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnSuaThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/pencil-icon.png"))); // NOI18N
+        btnSuaThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/edit-32.png"))); // NOI18N
         btnSuaThietBi.setText("Thiết Bị");
         btnSuaThietBi.setEnabled(false);
         btnSuaThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -1402,7 +1402,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         });
 
         btnXoaThietBi.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnXoaThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Recycle-Bin-icon.png"))); // NOI18N
+        btnXoaThietBi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/delete-32.png"))); // NOI18N
         btnXoaThietBi.setText("Thiết Bị");
         btnXoaThietBi.setEnabled(false);
         btnXoaThietBi.addActionListener(new java.awt.event.ActionListener() {
@@ -1412,7 +1412,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         });
 
         btnLuuPhieuNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnLuuPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save-icon.png"))); // NOI18N
+        btnLuuPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/save-32.png"))); // NOI18N
         btnLuuPhieuNhap.setText("Lưu");
         btnLuuPhieuNhap.setEnabled(false);
         btnLuuPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -1529,7 +1529,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         lbTongTienNhapHang.setText("0 VNĐ");
 
         btnInPhieuNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        btnInPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/printer-icon.png"))); // NOI18N
+        btnInPhieuNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/print-32.png"))); // NOI18N
         btnInPhieuNhap.setText("In phiếu nhập");
         btnInPhieuNhap.setEnabled(false);
         btnInPhieuNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -1550,11 +1550,15 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(28, 28, 28)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 315, Short.MAX_VALUE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lbTongTienNhapHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
+                                    .addComponent(lbTongTienNhapHang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -2244,7 +2248,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
