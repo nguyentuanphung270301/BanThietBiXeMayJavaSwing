@@ -77,12 +77,12 @@ public class XuLy {
                 tk.setMaNhanVien(rs.getString("MANHANVIEN"));
                 tk.setLoaiTaiKhoan(rs.getString("LOAITAIKHOAN"));
                 ShareData.nguoiDangNhap = tk;
-                if(rs.getString("LOAITAIKHOAN").equals("Nhân viên")){
+                if(rs.getString("LOAITAIKHOAN").equals("NHÂN VIÊN")){
                     FormTrangChu_NhanVien trangChu_NhanVien = new FormTrangChu_NhanVien(taiKhoan);
                     jFrame.dispose();
                     trangChu_NhanVien.setVisible(true);
                 }
-                else if(rs.getString("LOAITAIKHOAN").equals("Quản lý")){
+                else if(rs.getString("LOAITAIKHOAN").equals("QUẢN LÝ")){
                     FormTrangChu_QuanLy trangChu_QuanLy = new FormTrangChu_QuanLy();
                     jFrame.dispose();
                     trangChu_QuanLy.setVisible(true);
@@ -343,28 +343,28 @@ public class XuLy {
         }
         return kq;
     }
-    public void themChucVu(String maChucVu, String tenChucVu, float luongCoBan){
+    public void themChucVu(String maChucVu, String tenChucVu, String luongCoBan){
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
         String sql = "EXEC SP_THEMCHUCVU ?,?,?";
         try{
             PreparedStatement ps = ketNoi.prepareStatement(sql);
             ps.setString(1, maChucVu);
             ps.setString(2, tenChucVu);
-            ps.setFloat(3, luongCoBan);
+            ps.setString(3, luongCoBan);
             ps.executeUpdate();
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
     }
-    public void suaChucVu(String maChucVu, String tenChucVu, float luongCoBan){
+    public void suaChucVu(String maChucVu, String tenChucVu, String luongCoBan){
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
         String sql = "EXEC SP_SUACHUCVU ?,?,?";
         try{
             PreparedStatement ps = ketNoi.prepareStatement(sql);
             ps.setString(1, maChucVu);
             ps.setString(2, tenChucVu);
-            ps.setFloat(3, luongCoBan);
+            ps.setString(3, luongCoBan);
             ps.executeUpdate();
         }
         catch(Exception ex){
@@ -684,20 +684,19 @@ public class XuLy {
             ex.printStackTrace();
         }
     }
-      public void suaThietBi(String maThietBi, String tenThietBi, String maLoai, String maNSX, String tgBaoHanh, String gia, byte[] anh, String maThietBiThayDoi) {
-        String sql = "EXEC SP_SUATHIETBI ?,?,?,?,?,?,?,?";
+      public void suaThietBi( String tenThietBi, String maLoai, String maNSX, String tgBaoHanh, String gia, byte[] anh, String maThietBi) {
+        String sql = "EXEC SP_SUATHIETBI ?,?,?,?,?,?,?";
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
         try{
             PreparedStatement ps = ketNoi.prepareStatement(sql);
-            ps.setString(1, maThietBi);
-            ps.setString(2, tenThietBi);
-            ps.setString(3, maLoai);
-            ps.setString(4, maNSX);
-            ps.setString(5, tgBaoHanh);
-            ps.setString(6, gia );
+            ps.setString(1, tenThietBi);
+            ps.setString(2, maLoai);
+            ps.setString(3, maNSX);
+            ps.setString(4, tgBaoHanh);
+            ps.setString(5, gia );
             Blob hinh = new SerialBlob(anh);
-            ps.setBlob(7, hinh);
-            ps.setString(8, maThietBiThayDoi);
+            ps.setBlob(6, hinh);
+            ps.setString(7, maThietBi);
             ps.executeUpdate();
         }
         catch(Exception ex){
@@ -897,7 +896,7 @@ public class XuLy {
                 e.printStackTrace();
             }
         } 
-        return max;
+        return max;     
     }
     public DatHang layThongTinDatHang(String maDonHang) {
         String sql = "EXEC SP_LAYTHONGTINDATHANG ?";

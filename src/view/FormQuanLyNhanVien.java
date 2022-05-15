@@ -5,6 +5,7 @@
 package view;
 
 import DAO.KetNoiCoSoDuLieu;
+import DAO.ShareData;
 import controller.XuLy;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import model.ChucVu;
 import model.NhanVien;
 import java.util.Date;
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.table.TableModel;
@@ -128,7 +130,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         }
     }
     private void gioiTinh(String s){
-        if(s.equals("Nam")){
+        if(s.equals("NAM")){
             cbxGioiTinh.setSelectedIndex(0);
         }
         else{
@@ -233,6 +235,14 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
      Matcher matcher = pattern.matcher(mail);
 
         return matcher.matches();
+    }
+     private float chuyenSangSo(String s) {
+        String number = "";
+        String[] array = s.replace(",", " ").split("\\s");
+        for (String i : array) {
+            number = number.concat(i);
+        }
+        return Float.parseFloat(number);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -390,7 +400,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         jLabel8.setText("Email:");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 70, -1, 34));
 
-        cbxGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ" }));
+        cbxGioiTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NAM", "NỮ" }));
         cbxGioiTinh.setEnabled(false);
         jPanel2.add(cbxGioiTinh, new org.netbeans.lib.awtextra.AbsoluteConstraints(1029, 13, 156, 30));
 
@@ -721,8 +731,8 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Sai định dạng email !","Lỗi",2);
                     }
                     else{
-                    xuLy.themNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
-                    cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText(), txtSoDienThoai.getText(), txtEmail.getText(),Float.parseFloat(txtBacLuong.getText()), array[0]);
+                    xuLy.themNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText().toUpperCase(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
+                    cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(),Float.parseFloat(txtBacLuong.getText()), array[0]);
                     Disable();
                     Refresh();
                    taiBangNhanVien();
@@ -745,8 +755,8 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Sai định dạng email !","Lỗi",2);
                     }
                     else{
-                        xuLy.suaNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
-                            cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText(), txtSoDienThoai.getText(), txtEmail.getText(),
+                        xuLy.suaNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText().toUpperCase(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
+                            cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(),
                             Float.parseFloat(txtBacLuong.getText()),array[0],model.getValueAt(click,0).toString().trim());
                     System.out.println(array[0]);
                     Disable();
@@ -764,7 +774,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                     }
                     else{
                     xuLy.suaNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
-                            cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText(), txtSoDienThoai.getText(), txtEmail.getText(),
+                            cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(),
                             Float.parseFloat(txtBacLuong.getText()),array[0],model.getValueAt(click,0).toString().trim());
                     System.out.println(array[0]);
                     Disable();
@@ -783,10 +793,15 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int click = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá nhân viên hay không ?","Thông báo",2);
         if(click == JOptionPane.OK_OPTION){
+            if(txtMaNhanVien.getText().equals(ShareData.nguoiDangNhap.getMaNhanVien().toString())){
+                JOptionPane.showMessageDialog(this, "Không thể xoá nhân viên này vì đang đăng nhập !");
+            }
+            else{
             xuLy.xoaNhanVien(txtMaNhanVien.getText());
             Refresh();
             taiBangNhanVien();
             JOptionPane.showMessageDialog(this, "Xoá nhân viên thành công !","Thông báo",1);
+            }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -804,7 +819,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         
         txtMaChucVu.setText(model.getValueAt(click,0).toString());
         txtChucVu.setText(model.getValueAt(click,1).toString());
-        txtLuongCoBan.setText(model.getValueAt(click,2).toString());
+        txtLuongCoBan.setText(cutChar(model.getValueAt(click,2).toString()) + " VNĐ");
         
         btnSuaChucVu.setEnabled(true);
         btnXoaChucVu.setEnabled(true);
@@ -853,10 +868,11 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSuaChucVuActionPerformed
 
     private void btnLuuChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuChucVuActionPerformed
+        String[] luong = txtLuongCoBan.getText().split("\\s");
         if(kiemtraRongChucVu()){
             if(Them == true){
                 if(xuLy.ktThemChucVu(txtMaChucVu.getText())){
-                    xuLy.themChucVu(txtMaChucVu.getText().toUpperCase(), txtChucVu.getText(), Float.parseFloat(txtLuongCoBan.getText()));
+                    xuLy.themChucVu(txtMaChucVu.getText().toUpperCase(), txtChucVu.getText().toUpperCase(),luong[0]);
                     disableChucVu();
                     refreshChucVu();
                     taiBangChucVu();
@@ -870,8 +886,8 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                 int click = tableChucVu.getSelectedRow();
                 TableModel model = tableChucVu.getModel();
                if(model.getValueAt(click,0).toString().equals(txtMaChucVu.getText())){
-                   xuLy.suaChucVu(model.getValueAt(click,0).toString().toUpperCase(), txtChucVu.getText(), 
-                   Float.parseFloat(txtLuongCoBan.getText()));
+                   xuLy.suaChucVu(model.getValueAt(click,0).toString().toUpperCase(), txtChucVu.getText().toUpperCase(), 
+                   luong[0]);
                    disableChucVu();
                    refreshChucVu();
                    taiBangChucVu();
@@ -885,7 +901,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     private void btnXoaChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaChucVuActionPerformed
         int click = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá chức vụ hay không ?","Xác nhận",2);
         if(click == JOptionPane.OK_OPTION){
-            if(xuLy.ktThemChucVu(txtMaChucVu.getText())== true){
+            if(xuLy.ktThemChucVu(txtMaChucVu.getText())== false){
             xuLy.xoaChucVu(txtMaChucVu.getText());
             refreshChucVu();
             taiBangChucVu();
@@ -898,7 +914,14 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaChucVuActionPerformed
 
     private void txtLuongCoBanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLuongCoBanKeyReleased
+         DecimalFormat formatter = new DecimalFormat("###,###,###");
+
         txtLuongCoBan.setText(cutChar(txtLuongCoBan.getText()));
+        if (txtLuongCoBan.getText().equals("")) {
+            return;
+        } else {
+            txtLuongCoBan.setText(formatter.format(chuyenSangSo(txtLuongCoBan.getText()))+ " VNĐ");
+        }
     }//GEN-LAST:event_txtLuongCoBanKeyReleased
 
     private void btnInDanhSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInDanhSachActionPerformed

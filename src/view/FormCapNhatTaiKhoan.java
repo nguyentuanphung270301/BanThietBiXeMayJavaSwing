@@ -4,6 +4,7 @@
  */
 package view;
 
+import DAO.ShareData;
 import controller.XuLy;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -187,7 +188,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         jLabel7.setText("Loại tài khoản:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, 30));
 
-        cbxLoaiTaiKhoan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quản lý", "Nhân viên" }));
+        cbxLoaiTaiKhoan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "QUẢN LÝ", "NHÂN VIÊN" }));
         cbxLoaiTaiKhoan.setEnabled(false);
         cbxLoaiTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -343,11 +344,17 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int click = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá tài khoản này hay không ?","Xác nhận",2);
+        String [] arr = cbxTenNhanVien.getSelectedItem().toString().split("\\s");
         if(click == JOptionPane.OK_OPTION){
+            if(arr[0].equals(ShareData.nguoiDangNhap.getMaNhanVien().toString())){
+                JOptionPane.showMessageDialog(this,"Không thể xoá tài khoản đang đăng nhập","Thông báo",2);
+            }
+            else{
             xuLy.xoaTaiKhoan(txtTenDangNhap.getText());
             Refresh();
             taiBangTaiKhoan();
             JOptionPane.showMessageDialog(this, "Xoá tài khoản thành công !","Thông báo",1);
+            }
         }
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -409,7 +416,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
                     } catch (MessagingException ex) {
                         ex.printStackTrace();
                     }
-                    JOptionPane.showMessageDialog(this, "Tạo tài khoản thành công !","Thông báo",1);
+                    JOptionPane.showMessageDialog(this, "Tạo tài khoản thành công !\n Mật khẩu được gửi về mail của bạn !","Thông báo",1);
                 }
                 else{
                     JOptionPane.showMessageDialog(this, "Tài khoản đã tồn tại !","Thông báo",1);

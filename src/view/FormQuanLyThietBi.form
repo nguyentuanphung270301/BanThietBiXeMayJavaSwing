@@ -45,9 +45,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jLabel1" min="-2" pref="57" max="-2" attributes="0"/>
-                  <Component id="btnTrangChu" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jLabel1" max="32767" attributes="0"/>
+                  <Component id="btnTrangChu" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jTabbedPaneQuanLiThietBi" max="32767" attributes="0"/>
@@ -63,7 +63,7 @@
           <Font name="Arial" size="18" style="1"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/icon/arrow-back-icon.png"/>
+          <Image iconType="3" name="/icon_new/return-48.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Trang Ch&#x1ee7;"/>
       </Properties>
@@ -299,9 +299,9 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="3">
-                        <StringItem index="0" value="Ng&#xe0;y"/>
-                        <StringItem index="1" value="Th&#xe1;ng"/>
-                        <StringItem index="2" value="N&#x103;m"/>
+                        <StringItem index="0" value="NG&#xc0;Y"/>
+                        <StringItem index="1" value="TH&#xc1;NG"/>
+                        <StringItem index="2" value="N&#x102;M"/>
                       </StringArray>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
@@ -1258,9 +1258,11 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtGiaThietBiNhap">
                   <Properties>
-                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtGiaThietBiNhapMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

@@ -195,7 +195,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
     private void donHangMoi() {
         if (xuLy.layMaDonHang()< 10) {
             cbxMaDonHang.addItem("DH" + "0" + String.valueOf(xuLy.layMaDonHang()+ 1));
-            cbxMaDonHang.setSelectedItem("ĐH" + "0" + String.valueOf(xuLy.layMaDonHang()+ 1));
+            cbxMaDonHang.setSelectedItem("DH" + "0" + String.valueOf(xuLy.layMaDonHang()+ 1));
         } else {
             cbxMaDonHang.addItem("DH" + String.valueOf(xuLy.layMaDonHang()+ 1));
             cbxMaDonHang.setSelectedItem("DH" + String.valueOf(xuLy.layMaDonHang()+ 1));
@@ -397,7 +397,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                         .addComponent(jLabel5)
                         .addGap(12, 12, 12)
                         .addComponent(txtSoDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -408,7 +408,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
                         .addComponent(txtNgayDat, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(85, 85, 85))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -434,7 +434,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 88, 760, 120));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 88, 670, 120));
 
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/refresh-32.png"))); // NOI18N
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -640,7 +640,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtBaoHanh)
-                            .addComponent(cbxLoaiSanPham, javax.swing.GroupLayout.Alignment.LEADING, 0, 73, Short.MAX_VALUE))
+                            .addComponent(cbxLoaiSanPham, javax.swing.GroupLayout.Alignment.LEADING, 0, 143, Short.MAX_VALUE))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10)
@@ -683,7 +683,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                 .addGap(33, 33, 33))
         );
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 80, 460, 200));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 530, 200));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 3, 20)); // NOI18N
         jLabel15.setText("Mã Đơn Hàng:");
@@ -784,6 +784,8 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                 xuLy.chuyenTrangThaiDatHang(MADDH);
                 taiDonDH();
                 consistency(MADDH);
+                tableDonHang.removeAll();
+                Refresh();
             } catch (JRException ex) {
                 ex.printStackTrace();
             }
@@ -856,8 +858,8 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                     }
                     else{
                 donHangMoi();
-                xuLy.themDonHangMoi(cbxMaDonHang.getSelectedItem().toString(), txtTenKhachHang.getText(),
-                txtDiaChi.getText(), txtSoDienThoai.getText(),ShareData.nguoiDangNhap.getMaNhanVien() ,
+                xuLy.themDonHangMoi(cbxMaDonHang.getSelectedItem().toString(), txtTenKhachHang.getText().toUpperCase(),
+                txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(),ShareData.nguoiDangNhap.getMaNhanVien() ,
                 new java.sql.Date(txtNgayDat.getDate().getTime()),0);
                 taiDonDH();
                 Refresh();
@@ -869,7 +871,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Sai định dạng số điện thoại !","Lỗi",2);
                     }
                     else{
-                xuLy.suaDonHang(txtTenKhachHang.getText(), txtDiaChi.getText(), txtSoDienThoai.getText(),
+                xuLy.suaDonHang(txtTenKhachHang.getText().toUpperCase(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(),
                         new java.sql.Date(txtNgayDat.getDate().getTime()),cbxMaDonHang.getSelectedItem().toString());
                 taiThongTinDonHang();
                 Refresh();

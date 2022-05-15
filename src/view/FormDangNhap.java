@@ -52,7 +52,7 @@ public class FormDangNhap extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 3, 24)); // NOI18N
         jLabel1.setText("ĐĂNG NHẬP VÀO HỆ THỐNG");
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -63,6 +63,9 @@ public class FormDangNhap extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/password-48.png"))); // NOI18N
         jLabel3.setText("          Mật khẩu");
 
+        txtTenDangNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+
+        txtMatKhau.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         txtMatKhau.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         btnThoat.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N

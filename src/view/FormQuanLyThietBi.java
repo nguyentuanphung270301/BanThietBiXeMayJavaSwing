@@ -388,9 +388,9 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         return arry.replaceAll("\\D+", "");
     }
     private void thoiGian(String s) {
-        if (s.equals("Ngày")) {
+        if (s.equals("NGÀY")) {
             cbxTG.setSelectedIndex(0);
-        } else if (s.equals("Tháng")) {
+        } else if (s.equals("THÁNG")) {
             cbxTG.setSelectedIndex(1);
         } else {
             cbxTG.setSelectedIndex(2);
@@ -456,11 +456,11 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         return formatter.format(chuyenSangSo(s));
     }
-       private String xuLyGiaNhap(String s){
+      /* private String xuLyGiaNhap(String s){
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         double gia = chuyenSangSo(s)-(chuyenSangSo(s))*10/100;
         return formatter.format(gia);
-    }
+    }*/
        private void timThietBi(String sql) {
         ArrayList array = xuLy.timthietBi(sql);
         View(array);
@@ -508,7 +508,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         String[] test = cbxThietBiNhap.getSelectedItem().toString().split("\\s");
 
         thietBi = new ThietBi(xuLy.layThietBiTheoMa(test[0]));
-        txtGiaThietBiNhap.setText(xuLyGiaNhap((thietBi.getGia())) + " VNĐ");
+        //txtGiaThietBiNhap.setText(xuLyGiaNhap((thietBi.getGia())) + " VNĐ");
     }
      private void taiPhieuNhap() {
         cbxMaPhieuNhap.removeAllItems();
@@ -681,7 +681,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/arrow-back-icon.png"))); // NOI18N
+        btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/return-48.png"))); // NOI18N
         btnTrangChu.setText("Trang Chủ");
         btnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -780,7 +780,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         jPanel6.add(btnCapNhatAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 150, 30));
         jPanel6.add(labelHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 13, 110, 144));
 
-        cbxTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", "Tháng", "Năm" }));
+        cbxTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NGÀY", "THÁNG", "NĂM" }));
         cbxTG.setEnabled(false);
         jPanel6.add(cbxTG, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 30, -1, 30));
 
@@ -1266,8 +1266,12 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel21.setText("Giá:");
 
-        txtGiaThietBiNhap.setEditable(false);
         txtGiaThietBiNhap.setEnabled(false);
+        txtGiaThietBiNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtGiaThietBiNhapMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -1613,9 +1617,9 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTrangChu))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jTabbedPaneQuanLiThietBi)
                 .addContainerGap())
@@ -1694,7 +1698,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             String[] array_NSX = cbxNhaSanXuat.getSelectedItem().toString().split("\\s");
             if (Them == true) {
                 if (xuLy.ktThemThietBi(txtMaSP.getText())) {
-                    xuLy.themThietBi(txtMaSP.getText(), txtTenSP.getText(), array_Loai[0], array_NSX[0], txtThoiGianBaoHanh.getText() + " " + cbxTG.getSelectedItem().toString(), txtGia.getText(), hinhThietBi);
+                    xuLy.themThietBi(txtMaSP.getText(), txtTenSP.getText().toUpperCase(), array_Loai[0].toUpperCase(), array_NSX[0].toUpperCase(), txtThoiGianBaoHanh.getText() + " " + cbxTG.getSelectedItem().toString(), txtGia.getText(), hinhThietBi);
                     Disable();
                     Refresh();
                     taiBangThietBi();
@@ -1706,8 +1710,8 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }   else if (Sua == true) {
                 int Click = tableSanPham.getSelectedRow();
                 TableModel model = tableSanPham.getModel();
-                
-                        xuLy.suaThietBi(txtMaSP.getText(), txtTenSP.getText(),array_Loai[0], array_NSX[0], txtThoiGianBaoHanh.getText() + " " + cbxTG.getSelectedItem().toString(), txtGia.getText(),hinhThietBi, model.getValueAt(Click, 0).toString().trim());
+                        xuLy.suaThietBi(txtTenSP.getText().toUpperCase(),array_Loai[0].toUpperCase(), array_NSX[0].toUpperCase(), txtThoiGianBaoHanh.getText() + " " + cbxTG.getSelectedItem().toString(),txtGia.getText()
+                                ,hinhThietBi, model.getValueAt(Click, 0).toString().trim());
                         Disable();
                         Refresh();
                         taiBangThietBi();
@@ -1794,7 +1798,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         if (ktRongLoaiThietBi()) {
             if (Them == true) {
                 if (xuLy.ktLoaiThietBi(txtMaLoai.getText())) {
-                    xuLy.themLoaiThietBi(txtMaLoai.getText(), txtLoaiThietBi.getText());
+                    xuLy.themLoaiThietBi(txtMaLoai.getText(), txtLoaiThietBi.getText().toUpperCase());
                     taiBangLoaiThietBi();
                     DisableLoaiThietBi();
                     Refresh();
@@ -1807,13 +1811,13 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                 TableModel model = tableLoaiSanPham.getModel();
 
                 if (model.getValueAt(Click, 0).toString().equals(txtMaLoai.getText())) {
-                    xuLy.suaLoaiThietBi(txtMaLoai.getText(), txtLoaiThietBi.getText(), model.getValueAt(Click, 0).toString());
+                    xuLy.suaLoaiThietBi(txtMaLoai.getText(), txtLoaiThietBi.getText().toUpperCase(), model.getValueAt(Click, 0).toString());
                     DisableLoaiThietBi();
                     taiBangLoaiThietBi();
                     Refresh();
                     JOptionPane.showMessageDialog(this,"Lưu thay đổi thành công !","Thông báo",1);
                 } else if (xuLy.ktLoaiThietBi(txtMaLoai.getText())) {
-                    xuLy.suaLoaiThietBi(txtMaLoai.getText(), txtLoaiThietBi.getText(), model.getValueAt(Click, 0).toString());
+                    xuLy.suaLoaiThietBi(txtMaLoai.getText(), txtLoaiThietBi.getText().toUpperCase(), model.getValueAt(Click, 0).toString());
                     DisableLoaiThietBi();
                     taiBangLoaiThietBi();
                     Refresh();
@@ -1878,7 +1882,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Sai định dạng email !","Lỗi",2);
                     }
                     else{
-                    xuLy.themNhaSanXuat(txtMaNSX.getText(), txtNhaSanXuat.getText(), txtDiaChi.getText(), txtSoDienThoai.getText(), txtEmail.getText());
+                    xuLy.themNhaSanXuat(txtMaNSX.getText(), txtNhaSanXuat.getText().toUpperCase(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText());
                     taiBangNhaSanXuat();
                     DisableNSX();
                     Refresh();
@@ -1898,7 +1902,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Sai định dạng email !","Lỗi",2);
                     }
                     else{
-                    xuLy.suaNhaSanXuat(txtMaNSX.getText(), txtNhaSanXuat.getText(), txtDiaChi.getText(), txtSoDienThoai.getText(), txtEmail.getText(), model.getValueAt(Click, 0).toString());
+                    xuLy.suaNhaSanXuat(txtMaNSX.getText(), txtNhaSanXuat.getText().toUpperCase(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(), model.getValueAt(Click, 0).toString());
                     DisableNSX();
                     Refresh();
                     taiBangNhaSanXuat();
@@ -1912,7 +1916,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(this, "Sai định dạng email !","Lỗi",2);
                     }
                     else{
-                    xuLy.suaNhaSanXuat(txtMaNSX.getText(), txtNhaSanXuat.getText(), txtDiaChi.getText(), txtSoDienThoai.getText(), txtEmail.getText(), model.getValueAt(Click, 0).toString());
+                    xuLy.suaNhaSanXuat(txtMaNSX.getText(), txtNhaSanXuat.getText().toUpperCase(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(), model.getValueAt(Click, 0).toString());
                     DisableNSX();
                     taiBangNhaSanXuat();
                     Refresh();
@@ -1945,7 +1949,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
 
             btnSua.setEnabled(true);
             btnXoa.setEnabled(true);
-
+            
             int Click = tableSanPham.getSelectedRow();
             TableModel model = tableSanPham.getModel();
             thietBi = xuLy.layThietBiTheoMa(model.getValueAt(Click, 0).toString());
@@ -1959,9 +1963,9 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             String[] s = model.getValueAt(Click, 4).toString().trim().split("\\s");
 
             txtThoiGianBaoHanh.setText(s[0]);
-
+            txtGia.setText(cutChar(model.getValueAt(Click, 6).toString()));
             thoiGian(s[1]);
-            txtGia.setText(model.getValueAt(Click, 6).toString());
+
              if(thietBi.getHinhAnh()!= null ){
                         Image img = ImageData.createImageFromByArray(thietBi.getHinhAnh(), "jpg");
                         labelHinhAnh.setIcon(new ImageIcon(img));
@@ -1998,7 +2002,8 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
     }//GEN-LAST:event_txtThoiGianBaoHanhKeyReleased
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
-    String sql = "SELECT * FROM THIETBI WHERE MATHIETBI LIKE N'%"+this.txtTimKiem.getText()+"%' OR MALOAI LIKE N'%"+this.txtTimKiem.getText()+"%' OR TENTHIETBI LIKE N'%"+this.txtTimKiem.getText()+"%' OR MANSX LIKE N'%"+this.txtTimKiem.getText()+"%' OR TGBAOHANH LIKE N'%"+this.txtTimKiem.getText()+"%' OR SOLUONG LIKE N'%"+this.txtTimKiem.getText()+"%' OR GIA LIKE N'%"+this.txtTimKiem.getText()+"%'";
+    txtTimKiem.setText(txtTimKiem.getText().toUpperCase());
+    String sql = "SELECT * FROM THIETBI WHERE MATHIETBI LIKE N'%"+this.txtTimKiem.getText().toUpperCase()+"%' OR MALOAI LIKE N'%"+this.txtTimKiem.getText().toUpperCase()+"%' OR TENTHIETBI LIKE N'%"+this.txtTimKiem.getText().toUpperCase()+"%' OR MANSX LIKE N'%"+this.txtTimKiem.getText().toUpperCase()+"%' OR TGBAOHANH LIKE N'%"+this.txtTimKiem.getText().toUpperCase()+"%' OR SOLUONG LIKE N'%"+this.txtTimKiem.getText().toUpperCase()+"%' OR GIA LIKE N'%"+this.txtTimKiem.getText().toUpperCase()+"%'";
     timThietBi(sql);
     }//GEN-LAST:event_txtTimKiemKeyReleased
 
@@ -2017,7 +2022,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
 
             String[] s = txtGiaThietBiNhap.getText().split("\\s");
 
-            txtDonGia.setText(formatter.format(chuyenSangSo(s[0]) * soluong) + " " + s[1]);
+            txtDonGia.setText(formatter.format(chuyenSangSo(s[0]) * soluong) + " VNĐ");
         }
     }//GEN-LAST:event_txtSoLuongNhapKeyReleased
 
@@ -2175,7 +2180,6 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
 
     private void cbxThietBiNhapPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbxThietBiNhapPopupMenuWillBecomeInvisible
         taiThongTinThietBi();
-        txtSoLuongNhap.setEnabled(true);
     }//GEN-LAST:event_cbxThietBiNhapPopupMenuWillBecomeInvisible
 
     private void cbxLoaiThietBiNhapPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbxLoaiThietBiNhapPopupMenuWillBecomeInvisible
@@ -2217,7 +2221,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
     }//GEN-LAST:event_tablePhieuNhapMouseClicked
 
     private void btnInPhieuNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInPhieuNhapActionPerformed
-        int Click = JOptionPane.showConfirmDialog(null, "Bạn có muốn xuất đơn đặt hàng hay không?", "Thông Báo", 2);
+        int Click = JOptionPane.showConfirmDialog(null, "Bạn có muốn in phiếu nhập hay không?", "Thông Báo", 2);
         String MAPN = cbxMaPhieuNhap.getSelectedItem().toString().trim();
         if (Click == JOptionPane.YES_OPTION) {
             try {
@@ -2228,14 +2232,20 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                 lbTrangThai.setText("Thực hiện xuất đơn đặt hàng công!");
                 JasperViewer.viewReport(print, false);
                 xuLy.chuyenTrangThaiNhapHang(MAPN);
-                taiPhieuNhap();
                 consistency(MAPN);
                 taiBangThietBi();
+                tablePhieuNhap.removeAll();
+                RefreshPhieuNhap();
             } catch (JRException ex) {
                 ex.printStackTrace();
             }
         }
+        
     }//GEN-LAST:event_btnInPhieuNhapActionPerformed
+
+    private void txtGiaThietBiNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtGiaThietBiNhapMouseClicked
+        txtSoLuongNhap.setEnabled(true);
+    }//GEN-LAST:event_txtGiaThietBiNhapMouseClicked
 
     /**
      * @param args the command line arguments
