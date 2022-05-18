@@ -52,15 +52,23 @@ public class FormDoiMatKhau extends javax.swing.JFrame {
         boolean kq = true;
         if(String.valueOf(this.txtMatKhauHienTai.getPassword()).length()==0){
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập mật khẩu hiện tai!", "Thông báo", 2);
+            kq = false;
         }
         else if(String.valueOf(this.txtMatKhauMoi.getPassword()).length()==0){
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập mật khẩu mới!", "Thông báo", 2);
+             kq = false;
+        }
+        else if(String.valueOf(this.txtMatKhauMoi.getPassword()).length()<8 || String.valueOf(this.txtMatKhauMoi.getPassword()).length() > 16 ){
+            JOptionPane.showMessageDialog(this, "Mật khẩu có độ dài từ 8 đến 16 kí tự !", "Thông báo", 2);
+             kq = false;
         }
         else if(String.valueOf(this.txtNhapLaiMatKhauMoi.getPassword()).length()==0){
             JOptionPane.showMessageDialog(this, "Bạn chưa nhập lại mật khẩu mới!", "Thông báo", 2);
+             kq = false;
         }
         else if(!String.valueOf(this.txtMatKhauMoi.getPassword()).equals(String.valueOf(this.txtNhapLaiMatKhauMoi.getPassword()))){
             JOptionPane.showMessageDialog(this, "Mật khẩu mới không trùng khớp !", "Thông báo", 2);
+             kq = false;
         }
         return kq;
     }

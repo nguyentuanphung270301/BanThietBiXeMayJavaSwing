@@ -29,6 +29,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import model.ChiTietDatHang;
 import model.ChiTietNhapHang;
@@ -78,11 +79,13 @@ public class XuLy {
                 tk.setLoaiTaiKhoan(rs.getString("LOAITAIKHOAN"));
                 ShareData.nguoiDangNhap = tk;
                 if(rs.getString("LOAITAIKHOAN").equals("NHÂN VIÊN")){
+                    JOptionPane.showMessageDialog(jFrame, "Đăng nhập thành công !","Thông báo",1);
                     FormTrangChu_NhanVien trangChu_NhanVien = new FormTrangChu_NhanVien(taiKhoan);
                     jFrame.dispose();
                     trangChu_NhanVien.setVisible(true);
                 }
                 else if(rs.getString("LOAITAIKHOAN").equals("QUẢN LÝ")){
+                    JOptionPane.showMessageDialog(jFrame, "Đăng nhập thành công !","Thông báo",1);
                     FormTrangChu_QuanLy trangChu_QuanLy = new FormTrangChu_QuanLy();
                     jFrame.dispose();
                     trangChu_QuanLy.setVisible(true);
@@ -191,6 +194,40 @@ public class XuLy {
     public ArrayList layNhanVien(){
         ArrayList arr = new ArrayList();
         String sql = "EXEC SP_LAYNHANVIEN ";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try{
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                arr.add(nhanvien = new NhanVien(rs.getString(1),
+                        rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getDate(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9),rs.getFloat(10)));
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return arr;
+    }
+     public ArrayList timNhanVien(String sql) {
+        ArrayList arry = new ArrayList();
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try {
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                arry.add(nhanvien = new NhanVien(rs.getString(1),
+                        rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getDate(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8), rs.getString(9),rs.getFloat(10)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return arry;
+    }
+    public ArrayList layNhanVienChuaTaoTK(){
+        ArrayList arr = new ArrayList();
+        String sql = "EXEC SP_LAYNHANVIENCHUATAOTK ";
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
         try{
             PreparedStatement ps = ketNoi.prepareStatement(sql);

@@ -341,7 +341,7 @@ public class FormCapNhatDonHang extends javax.swing.JFrame {
 
         btnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/return-48.png"))); // NOI18N
-        btnTrangChu.setText("Trang Chủ");
+        btnTrangChu.setText("Quay Lại");
         btnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTrangChuActionPerformed(evt);

@@ -43,14 +43,12 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         jDateChooserNgayTao.setEnabled(false);
         cbxTenNhanVien.setEnabled(false);
         cbxLoaiTaiKhoan.setEnabled(false);
-        btn.setEnabled(false);
     }
      public void Enable(){
         txtTenDangNhap.setEnabled(true);
         jDateChooserNgayTao.setEnabled(true);
         cbxTenNhanVien.setEnabled(true);
         cbxLoaiTaiKhoan.setEnabled(true);
-        btn.setEnabled(true);
     }
      public void Refresh(){
          cbxTenNhanVien.removeAllItems();
@@ -80,7 +78,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         return kq;
      }
      private void taiDSNhanVien(){
-         ArrayList array = xuLy.layNhanVien();
+         ArrayList array = xuLy.layNhanVienChuaTaoTK();
          for(int i = 0;i<array.size();i++){
              this.cbxTenNhanVien.addItem(((NhanVien) array.get(i)).getMaNhanVien().trim()+" ("+ ((NhanVien) array.get(i)).getHoTen().trim()+")");
          }
@@ -124,7 +122,6 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         jDateChooserNgayTao = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         cbxLoaiTaiKhoan = new javax.swing.JComboBox<>();
-        btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableTaiKhoan = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -133,13 +130,14 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         btnXoa = new javax.swing.JButton();
         btnLuu = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1280, 720));
 
         btnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/return-48.png"))); // NOI18N
-        btnTrangChu.setText("Trang Chủ");
+        btnTrangChu.setText("Quay Lại");
         btnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTrangChuActionPerformed(evt);
@@ -196,15 +194,6 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbxLoaiTaiKhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 190, 30));
-
-        btn.setText("...");
-        btn.setEnabled(false);
-        btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 40, 30));
 
         tableTaiKhoan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -297,6 +286,9 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setText("Danh Sách Tài Khoản");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -316,7 +308,10 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1012, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1241, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel4)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -330,8 +325,10 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5))
         );
 
@@ -376,12 +373,6 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         btnLuu.setEnabled(true);
     }//GEN-LAST:event_btnThemActionPerformed
 
-    private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
-       FormQuanLyNhanVien ac = new FormQuanLyNhanVien();
-       this.dispose();
-       ac.setVisible(true);
-    }//GEN-LAST:event_btnActionPerformed
-
     private void cbxTenNhanVienPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_cbxTenNhanVienPopupMenuWillBecomeInvisible
  
     }//GEN-LAST:event_cbxTenNhanVienPopupMenuWillBecomeInvisible
@@ -389,9 +380,10 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         Them = false;
         Sua = true;
-        Enable();
-        cbxTenNhanVien.removeAllItems();
-        taiDSNhanVien();
+        txtTenDangNhap.setEnabled(true);
+        cbxLoaiTaiKhoan.setEnabled(true);
+        cbxTenNhanVien.setEnabled(false);
+        jDateChooserNgayTao.setEnabled(false);
         btnSua.setEnabled(false);
         btnThem.setEnabled(false);
         btnXoa.setEnabled(false);
@@ -400,7 +392,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
 
     private void btnLuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuActionPerformed
         String[] array = cbxTenNhanVien.getSelectedItem().toString().split("\\s");
-        String matKhau = xuLy.matKhauNgauNhien(6);
+        String matKhau = xuLy.matKhauNgauNhien(8);
         ArrayList arr = xuLy.layTTNhanVien(array[0]);
         if(kiemTraRong()){
             if(Them == true){
@@ -500,7 +492,6 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn;
     private javax.swing.JButton btnLamMoi;
     private javax.swing.JButton btnLuu;
     private javax.swing.JButton btnSua;
@@ -513,6 +504,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;

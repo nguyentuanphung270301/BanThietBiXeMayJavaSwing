@@ -159,6 +159,27 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         }
         tableNhanVien.setModel(model);
     }
+     private void View(ArrayList array){
+        tableNhanVien.removeAll();
+        String[] arr = {"Mã Nhân Viên","Họ Tên","Chức Vụ","Bậc Lương","Ngày Sinh","Giới Tính","Địa Chỉ","Số Điện Thoại","Email","Lương"};
+        DefaultTableModel model = new DefaultTableModel(arr,0);
+        
+        for(int i=0;i<array.size();i++){
+            Vector vt = new Vector();
+            vt.add(((NhanVien)array.get(i)).getMaNhanVien());
+            vt.add(((NhanVien)array.get(i)).getHoTen());
+            vt.add(((NhanVien)array.get(i)).getChucVu());
+            vt.add(((NhanVien)array.get(i)).getBacLuong());
+            vt.add(new SimpleDateFormat("dd/MM/yyyy").format(((NhanVien)array.get(i)).getNgaySinh()));
+            vt.add(((NhanVien)array.get(i)).getGioiTinh());
+            vt.add(((NhanVien)array.get(i)).getDiaChi());
+            vt.add(((NhanVien)array.get(i)).getSdt());
+            vt.add(((NhanVien)array.get(i)).getEmail());
+            vt.add(xuLy.xuLyLuong(((NhanVien)array.get(i)).getLuong()));
+            model.addRow(vt);
+        }
+        tableNhanVien.setModel(model);
+    }
     public void enableChucVu(){
         txtMaChucVu.setEnabled(true);
         txtChucVu.setEnabled(true);
@@ -244,6 +265,10 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         }
         return Float.parseFloat(number);
     }
+       private void timNhanVien(String sql) {
+        ArrayList array = xuLy.timNhanVien(sql);
+        View(array);
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -281,6 +306,9 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         btnInDanhSach = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableNhanVien = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        txtTimKiem = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         txtMaChucVu = new javax.swing.JTextField();
@@ -296,13 +324,14 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         btnLuuChucVu = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableChucVu = new javax.swing.JTable();
+        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/return-48.png"))); // NOI18N
-        btnTrangChu.setText("Trang Chủ");
+        btnTrangChu.setText("Quay Lại");
         btnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTrangChuActionPerformed(evt);
@@ -526,6 +555,28 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableNhanVien);
 
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel11.setText("Danh Sách Nhân Viên");
+
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel15.setText("Tìm Kiếm:");
+
+        txtTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtTimKiemMouseClicked(evt);
+            }
+        });
+        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimKiemActionPerformed(evt);
+            }
+        });
+        txtTimKiem.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTimKiemKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -539,6 +590,14 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                             .addComponent(jScrollPane1)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1221, Short.MAX_VALUE))))
                 .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(244, 244, 244))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -547,7 +606,12 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -644,6 +708,9 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tableChucVu);
 
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel16.setText("Danh Sách Chức Vụ");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -656,14 +723,19 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(51, 51, 51))))
+                        .addGap(51, 51, 51))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -937,6 +1009,22 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnInDanhSachActionPerformed
 
+    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiemActionPerformed
+
+    private void txtTimKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimKiemMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiemMouseClicked
+
+    private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
+        String sql ="SELECT NV.MANHANVIEN, NV.HOTEN, CV.TENCHUCVU , NV.BACLUONG, NV.NGAYSINH, NV.GIOITINH, NV.DIACHI, NV.SDT, NV.EMAIL ,"
+                + " LUONG= NV.BACLUONG * CV.LUONGCOBAN " +
+                    "FROM NHANVIEN AS NV, CHUCVU AS CV WHERE NV.MACHUCVU = CV.MACHUCVU AND ( NV.MANHANVIEN LIKE  '%"+ this.txtTimKiem.getText()+ "%' OR NV.HOTEN LIKE N'%" + this.txtTimKiem.getText() +
+               "%')";
+        timNhanVien(sql);       
+    }//GEN-LAST:event_txtTimKiemKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -991,9 +1079,12 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser jDateChooserNgaySinh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1022,5 +1113,6 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaChucVu;
     private javax.swing.JTextField txtMaNhanVien;
     private javax.swing.JTextField txtSoDienThoai;
+    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

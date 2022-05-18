@@ -456,11 +456,6 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         DecimalFormat formatter = new DecimalFormat("###,###,###");
         return formatter.format(chuyenSangSo(s));
     }
-      /* private String xuLyGiaNhap(String s){
-        DecimalFormat formatter = new DecimalFormat("###,###,###");
-        double gia = chuyenSangSo(s)-(chuyenSangSo(s))*10/100;
-        return formatter.format(gia);
-    }*/
        private void timThietBi(String sql) {
         ArrayList array = xuLy.timthietBi(sql);
         View(array);
@@ -611,7 +606,8 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableSanPham = new javax.swing.JTable();
         txtTimKiem = new javax.swing.JTextField();
-        btnTimKiem = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         txtMaLoai = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -625,6 +621,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         btnLuuLoaiThietBi = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableLoaiSanPham = new javax.swing.JTable();
+        jLabel25 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -644,6 +641,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         btnLuuNhaSanXuat = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableNhaSanXuat = new javax.swing.JTable();
+        jLabel26 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         txtDonGia = new javax.swing.JTextField();
@@ -682,7 +680,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
 
         btnTrangChu.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/return-48.png"))); // NOI18N
-        btnTrangChu.setText("Trang Chủ");
+        btnTrangChu.setText("Quay Lại");
         btnTrangChu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTrangChuActionPerformed(evt);
@@ -712,7 +710,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setText("Nhà sản xuất:");
-        jPanel6.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 120, 90, -1));
+        jPanel6.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 90, 30));
 
         txtTenSP.setEnabled(false);
         jPanel6.add(txtTenSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 30, 130, 30));
@@ -723,7 +721,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel16.setText("Giá:");
-        jPanel6.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 30, -1));
+        jPanel6.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, 30, 30));
 
         txtGia.setEnabled(false);
         txtGia.addActionListener(new java.awt.event.ActionListener() {
@@ -736,11 +734,11 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                 txtGiaKeyReleased(evt);
             }
         });
-        jPanel6.add(txtGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 110, 130, 30));
+        jPanel6.add(txtGia, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 100, 130, 30));
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setText("Loại thiết bị:");
-        jPanel6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 116, 80, 20));
+        jPanel6.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 80, 30));
 
         cbxLoaiSP.setEnabled(false);
         cbxLoaiSP.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -752,10 +750,10 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        jPanel6.add(cbxLoaiSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 150, 30));
+        jPanel6.add(cbxLoaiSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 130, 30));
 
         cbxNhaSanXuat.setEnabled(false);
-        jPanel6.add(cbxNhaSanXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 130, 30));
+        jPanel6.add(cbxNhaSanXuat, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 130, 30));
 
         txtThoiGianBaoHanh.setEnabled(false);
         txtThoiGianBaoHanh.addActionListener(new java.awt.event.ActionListener() {
@@ -778,7 +776,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         });
         jPanel6.add(btnCapNhatAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 150, 30));
-        jPanel6.add(labelHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 13, 110, 144));
+        jPanel6.add(labelHinhAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 13, 180, 144));
 
         cbxTG.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NGÀY", "THÁNG", "NĂM" }));
         cbxTG.setEnabled(false);
@@ -856,13 +854,13 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addGap(78, 78, 78)
                 .addComponent(btnThem)
-                .addGap(36, 36, 36)
+                .addGap(57, 57, 57)
                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
+                .addGap(49, 49, 49)
                 .addComponent(btnLuu, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnSapXep, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -916,15 +914,15 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                 txtTimKiemKeyReleased(evt);
             }
         });
-        jPanel3.add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 280, 30));
+        jPanel3.add(txtTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 290, 280, 30));
 
-        btnTimKiem.setText("Tìm kiếm");
-        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTimKiemActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnTimKiem, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 110, 30));
+        jLabel22.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel22.setText("Danh Sách Thiết Bị");
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel23.setText("Tìm Kiếm");
+        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 290, -1, 30));
 
         jTabbedPaneQuanLiThietBi.addTab("Thông tin thiết bị", jPanel3);
 
@@ -993,13 +991,13 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(btnLamMoi2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
+                .addGap(113, 113, 113)
                 .addComponent(btnThemLoaiThietBi, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
                 .addComponent(btnSuaLoaiThietBi, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
+                .addGap(105, 105, 105)
                 .addComponent(btnXoaLoaiThietBi, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68)
+                .addGap(75, 75, 75)
                 .addComponent(btnLuuLoaiThietBi, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -1035,6 +1033,10 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         jScrollPane2.setViewportView(tableLoaiSanPham);
 
         jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 254, 1310, 300));
+
+        jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel25.setText("Danh Sách Loại Thiết Bị");
+        jPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
 
         jTabbedPaneQuanLiThietBi.addTab("Cập nhật loại thiết bị", jPanel4);
 
@@ -1161,6 +1163,9 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tableNhaSanXuat);
 
+        jLabel26.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel26.setText("Danh Sách Nhà Sản Xuất");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -1194,6 +1199,10 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                     .addComponent(jScrollPane3)
                     .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel26)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1214,7 +1223,9 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(25, 25, 25)
+                .addComponent(jLabel26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -1766,7 +1777,7 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
         File file = chooser.getSelectedFile();
         try {
             ImageIcon icon = new ImageIcon(file.getPath());
-            Image img = ImageData.resize(icon.getImage(), 140, 160);
+            Image img = ImageData.resize(icon.getImage(), 180, 200);
             ImageIcon resizedIcon = new ImageIcon(img);
             labelHinhAnh.setIcon(resizedIcon);
             hinhThietBi = ImageData.toByteArray(img, "jpg");
@@ -1990,12 +2001,6 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnSapXepActionPerformed
-
-    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String sql = "SELECT * FROM THIETBI WHERE MATHIETBI LIKE N'%"+this.txtTimKiem.getText()+"%' OR MALOAI LIKE N'%"+this.txtTimKiem.getText()+"%' OR TENTHIETBI LIKE N'%"+this.txtTimKiem.getText()+"%' OR MANSX LIKE N'%"+this.txtTimKiem.getText()+"%' OR TGBAOHANH LIKE N'%"+this.txtTimKiem.getText()+"%' OR SOLUONG LIKE N'%"+this.txtTimKiem.getText()+"%' OR GIA LIKE N'%"+this.txtTimKiem.getText()+"%'";
-        timThietBi(sql);
-        txtTimKiem.setText("");
-    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void txtThoiGianBaoHanhKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtThoiGianBaoHanhKeyReleased
         txtThoiGianBaoHanh.setText(cutChar(txtThoiGianBaoHanh.getText()));
@@ -2309,7 +2314,6 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
     private javax.swing.JButton btnThemNhaSanXuat;
     private javax.swing.JButton btnThemPhieuNhap;
     private javax.swing.JButton btnThemThietBi;
-    private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnTrangChu;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXoaLoaiThietBi;
@@ -2337,7 +2341,11 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
