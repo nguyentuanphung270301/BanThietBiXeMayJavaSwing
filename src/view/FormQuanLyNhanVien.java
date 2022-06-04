@@ -7,6 +7,7 @@ package view;
 import DAO.KetNoiCoSoDuLieu;
 import DAO.ShareData;
 import controller.XuLy;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -26,6 +27,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.view.JasperViewer;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -70,6 +72,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         txtDiaChi.setEnabled(false);
         txtEmail.setEnabled(false);
         txtSoDienThoai.setEnabled(false);
+        cbxTrangThai.setEnabled(false);
     }
     public void Refresh(){
         Them = false;
@@ -137,12 +140,20 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
             cbxGioiTinh.setSelectedIndex(1);
         }
     }
+    private void trangThai(String s){
+        if(s.equals("Đang làm")){
+            cbxTrangThai.setSelectedIndex(0);
+        }
+        else{
+            cbxTrangThai.setSelectedIndex(1);
+        }
+    }
     private void taiBangNhanVien(){
         tableNhanVien.removeAll();
-        String[] arr = {"Mã Nhân Viên","Họ Tên","Chức Vụ","Bậc Lương","Ngày Sinh","Giới Tính","Địa Chỉ","Số Điện Thoại","Email","Lương"};
+        String[] arr = {"Mã Nhân Viên","Họ Tên","Chức Vụ","Bậc Lương","Ngày Sinh","Giới Tính","Địa Chỉ","Số Điện Thoại","Email","Lương","Trạng Thái"};
         DefaultTableModel model = new DefaultTableModel(arr,0);
         ArrayList array = xuLy.layNhanVien();
-        
+        String trangThai;
         for(int i=0;i<array.size();i++){
             Vector vt = new Vector();
             vt.add(((NhanVien)array.get(i)).getMaNhanVien());
@@ -155,6 +166,13 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
             vt.add(((NhanVien)array.get(i)).getSdt());
             vt.add(((NhanVien)array.get(i)).getEmail());
             vt.add(xuLy.xuLyLuong(((NhanVien)array.get(i)).getLuong()));
+            if(((NhanVien)array.get(i)).getTrangThai()== 0 ){
+                trangThai = "Đang làm";
+            }
+            else{
+                trangThai ="Đã nghĩ";
+            }
+            vt.add(trangThai);
             model.addRow(vt);
         }
         tableNhanVien.setModel(model);
@@ -221,7 +239,6 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         tableChucVu.removeAll();
         String[] arr ={"Mã Chức Vụ","Chức Vụ","Lương Cơ Bản"};
         DefaultTableModel model = new DefaultTableModel(arr,0);
-        
         ArrayList array = xuLy.layChucVu();
         for(int i =0; i < array.size();i++){
             Vector vt = new Vector();
@@ -297,6 +314,8 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtSoDienThoai = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        cbxTrangThai = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         btnLamMoi = new javax.swing.JButton();
         btnThem = new javax.swing.JButton();
@@ -356,6 +375,8 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(119, 202, -1, -1));
+
+        jTabbedPaneQuanLyNhanVien.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -453,6 +474,15 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         });
         jPanel2.add(txtSoDienThoai, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 140, 30));
 
+        jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel17.setText("Trạng Thái:");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 140, -1, 30));
+
+        cbxTrangThai.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        cbxTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đang làm", "Đã nghĩ" }));
+        cbxTrangThai.setEnabled(false);
+        jPanel2.add(cbxTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 140, 150, 30));
+
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/refresh-32.png"))); // NOI18N
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -539,15 +569,13 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
 
         tableNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
             }
         ));
+        tableNhanVien.setGridColor(new java.awt.Color(153, 153, 153));
         tableNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableNhanVienMouseClicked(evt);
@@ -602,7 +630,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -701,6 +729,8 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
 
             }
         ));
+        tableChucVu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tableChucVu.setGridColor(new java.awt.Color(153, 153, 153));
         tableChucVu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tableChucVuMouseClicked(evt);
@@ -733,7 +763,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jLabel16)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -784,7 +814,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         
         cbxChucVu.removeAllItems();
         taiMaiChucVu();
-        
+        cbxTrangThai.setEnabled(true);
         btnSua.setEnabled(false);
         btnThem.setEnabled(false);
         btnXoa.setEnabled(false);
@@ -818,7 +848,13 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
             else if(Sua == true){
                 int click = tableNhanVien.getSelectedRow();
                 TableModel model = tableNhanVien.getModel();
-                
+                int trangThai;
+                if(cbxTrangThai.getSelectedIndex() == 0){
+                    trangThai = 0;
+                }
+                else{
+                    trangThai = 1;
+                }
                 if(model.getValueAt(click,0).toString().equals(txtMaNhanVien.getText())){
                      if(ktSDT(txtSoDienThoai.getText())== false){
                         JOptionPane.showMessageDialog(this, "Sai định dạng số điện thoại !","Lỗi",2);
@@ -829,7 +865,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                     else{
                         xuLy.suaNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText().toUpperCase(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
                             cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(),
-                            Float.parseFloat(txtBacLuong.getText()),array[0],model.getValueAt(click,0).toString().trim());
+                            Float.parseFloat(txtBacLuong.getText()),array[0],trangThai,model.getValueAt(click,0).toString().trim());
                     System.out.println(array[0]);
                     Disable();
                     Refresh();
@@ -847,7 +883,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                     else{
                     xuLy.suaNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
                             cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(),
-                            Float.parseFloat(txtBacLuong.getText()),array[0],model.getValueAt(click,0).toString().trim());
+                            Float.parseFloat(txtBacLuong.getText()),array[0],trangThai,model.getValueAt(click,0).toString().trim());
                     System.out.println(array[0]);
                     Disable();
                     Refresh();
@@ -867,6 +903,15 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         if(click == JOptionPane.OK_OPTION){
             if(txtMaNhanVien.getText().equals(ShareData.nguoiDangNhap.getMaNhanVien().toString())){
                 JOptionPane.showMessageDialog(this, "Không thể xoá nhân viên này vì đang đăng nhập !");
+            }
+            else if(xuLy.ktNhanVienTrongDonDatHang(txtMaNhanVien.getText().toString())== false){
+                JOptionPane.showMessageDialog(this, "Không thể xoá nhân viên này vì đã có đơn đặt hàng !");
+            }
+            else if(xuLy.ktNhanVienTrongPhieuNhap(txtMaNhanVien.getText().toString())== false){
+                JOptionPane.showMessageDialog(this, "Không thể xoá nhân viên này vì đã có phiếu nhập !");
+            }
+            else if(xuLy.ktNhanVienTrongPhieuXuat(txtMaNhanVien.getText().toString())== false){
+                JOptionPane.showMessageDialog(this, "Không thể xoá nhân viên này vì đã có phiếu xuất !");
             }
             else{
             xuLy.xoaNhanVien(txtMaNhanVien.getText());
@@ -901,17 +946,17 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
         int click = tableNhanVien.getSelectedRow();
         TableModel model = tableNhanVien.getModel();
         //String[] arr = {"Mã Nhân Viên","Họ Tên","Chức Vụ","Bậc Lương","Ngày Sinh","Giới Tính","Địa Chỉ","Số Điện Thoại","Email","Lương"};
-        cbxChucVu.removeAllItems();
+        //cbxChucVu.removeAllItems();
         txtMaNhanVien.setText(model.getValueAt(click,0).toString());
         txtHoTen.setText(model.getValueAt(click,1).toString());
-        cbxChucVu.addItem(model.getValueAt(click, 2).toString());
+        //cbxChucVu.addItem(model.getValueAt(click, 2).toString());
         txtBacLuong.setText(model.getValueAt(click, 3).toString());
         ((JTextField) jDateChooserNgaySinh.getDateEditor().getUiComponent()).setText(model.getValueAt(click,4).toString());
         gioiTinh(model.getValueAt(click,5).toString());
         txtDiaChi.setText(model.getValueAt(click, 6).toString());
         txtSoDienThoai.setText(model.getValueAt(click, 7).toString());
         txtEmail.setText(model.getValueAt(click, 8).toString());
-        
+        trangThai(model.getValueAt(click, 10).toString());
         btnSua.setEnabled(true);
         btnXoa.setEnabled(true);
     }//GEN-LAST:event_tableNhanVienMouseClicked
@@ -973,7 +1018,10 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     private void btnXoaChucVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaChucVuActionPerformed
         int click = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá chức vụ hay không ?","Xác nhận",2);
         if(click == JOptionPane.OK_OPTION){
-            if(xuLy.ktThemChucVu(txtMaChucVu.getText())== false){
+            if(xuLy.ktXoaChucVu(txtMaChucVu.getText())== 1){
+            JOptionPane.showMessageDialog(this,"Không thể xoá chức vụ này vì đang sử dụng!","Cảnh báo",2);
+            }
+            else if(xuLy.ktThemChucVu(txtMaChucVu.getText())== false){
             xuLy.xoaChucVu(txtMaChucVu.getText());
             refreshChucVu();
             taiBangChucVu();
@@ -1019,7 +1067,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
 
     private void txtTimKiemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyReleased
         String sql ="SELECT NV.MANHANVIEN, NV.HOTEN, CV.TENCHUCVU , NV.BACLUONG, NV.NGAYSINH, NV.GIOITINH, NV.DIACHI, NV.SDT, NV.EMAIL ,"
-                + " LUONG= NV.BACLUONG * CV.LUONGCOBAN " +
+                + " LUONG= NV.BACLUONG * CV.LUONGCOBAN, NV.TRANGTHAI " +
                     "FROM NHANVIEN AS NV, CHUCVU AS CV WHERE NV.MACHUCVU = CV.MACHUCVU AND ( NV.MANHANVIEN LIKE  '%"+ this.txtTimKiem.getText()+ "%' OR NV.HOTEN LIKE N'%" + this.txtTimKiem.getText() +
                "%')";
         timNhanVien(sql);       
@@ -1076,6 +1124,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JButton btnXoaChucVu;
     private javax.swing.JComboBox<String> cbxChucVu;
     private javax.swing.JComboBox<String> cbxGioiTinh;
+    private javax.swing.JComboBox<String> cbxTrangThai;
     private com.toedter.calendar.JDateChooser jDateChooserNgaySinh;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1085,6 +1134,7 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

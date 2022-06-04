@@ -49,6 +49,7 @@ public class FormDangNhap extends javax.swing.JFrame {
         btnThoat = new javax.swing.JButton();
         btnDangNhap = new javax.swing.JButton();
         btnDoiMatKhau = new javax.swing.JButton();
+        lbQuenMatKhau = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +78,7 @@ public class FormDangNhap extends javax.swing.JFrame {
             }
         });
 
+        btnDangNhap.setBackground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon_new/login-32.png"))); // NOI18N
         btnDangNhap.setText("Đăng nhập");
@@ -92,6 +94,16 @@ public class FormDangNhap extends javax.swing.JFrame {
         btnDoiMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoiMatKhauActionPerformed(evt);
+            }
+        });
+
+        lbQuenMatKhau.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        lbQuenMatKhau.setForeground(new java.awt.Color(51, 51, 255));
+        lbQuenMatKhau.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbQuenMatKhau.setText("Quên Mật Khẩu ");
+        lbQuenMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbQuenMatKhauMouseClicked(evt);
             }
         });
 
@@ -116,7 +128,9 @@ public class FormDangNhap extends javax.swing.JFrame {
                                     .addComponent(txtTenDangNhap)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(60, 60, 60)
-                                .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lbQuenMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnDangNhap, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
                                 .addGap(68, 68, 68)
                                 .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(67, Short.MAX_VALUE))
@@ -143,7 +157,9 @@ public class FormDangNhap extends javax.swing.JFrame {
                     .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDoiMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(lbQuenMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         pack();
@@ -181,6 +197,12 @@ public class FormDangNhap extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Lỗi", 2);
         }
     }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void lbQuenMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbQuenMatKhauMouseClicked
+        FormQuenMatKhau quenMatKhau = new FormQuenMatKhau();
+       this.dispose();
+       quenMatKhau.setVisible(true);
+    }//GEN-LAST:event_lbQuenMatKhauMouseClicked
 
     /**
      * @param args the command line arguments
@@ -224,6 +246,7 @@ public class FormDangNhap extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lbQuenMatKhau;
     private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtTenDangNhap;
     // End of variables declaration//GEN-END:variables

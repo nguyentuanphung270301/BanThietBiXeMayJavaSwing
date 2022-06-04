@@ -21,8 +21,9 @@ public class NhanVien {
     private String sdt;
     private String email;
     private float luong;
+    private int trangThai;
 
-    public NhanVien(String maNhanVien, String hoTen, String chucVu, float bacLuong, Date ngaySinh, String gioiTinh, String diaChi, String sdt, String email, float luong) {
+    public NhanVien(String maNhanVien, String hoTen, String chucVu, float bacLuong, Date ngaySinh, String gioiTinh, String diaChi, String sdt, String email, float luong, int trangThai) {
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
         this.chucVu = chucVu;
@@ -33,6 +34,7 @@ public class NhanVien {
         this.sdt = sdt;
         this.email = email;
         this.luong = luong;
+        this.trangThai = trangThai;
     }
 
     public NhanVien(String maNhanVien, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String sdt, String email,float bacLuong,String chucVu) {
@@ -44,6 +46,11 @@ public class NhanVien {
         this.gioiTinh = gioiTinh;
         this.diaChi = diaChi;
         this.sdt = sdt;
+        this.email = email;
+    }
+
+    public NhanVien(String hoTen, String email) {
+        this.hoTen = hoTen;
         this.email = email;
     }
     
@@ -125,6 +132,14 @@ public class NhanVien {
 
     public void setLuong(float luong) {
         this.luong = luong;
+    }
+
+    public int getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
     
 }

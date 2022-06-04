@@ -14,7 +14,8 @@
 		</conditionalStyle>
 	</style>
 	<queryString>
-		<![CDATA[EXECUTE SP_LAYNHANVIEN]]>
+		<![CDATA[SELECT NV.MANHANVIEN, NV.HOTEN, CV.TENCHUCVU , NV.BACLUONG, NV.NGAYSINH, NV.GIOITINH, NV.DIACHI, NV.SDT, NV.EMAIL , LUONG= NV.BACLUONG * CV.LUONGCOBAN, NV.TRANGTHAI
+FROM NHANVIEN AS NV, CHUCVU AS CV WHERE NV.MACHUCVU = CV.MACHUCVU AND NV.TRANGTHAI = 0]]>
 	</queryString>
 	<field name="MANHANVIEN" class="java.lang.String"/>
 	<field name="HOTEN" class="java.lang.String"/>
@@ -26,6 +27,7 @@
 	<field name="SDT" class="java.lang.String"/>
 	<field name="EMAIL" class="java.lang.String"/>
 	<field name="LUONG" class="java.lang.Double"/>
+	<field name="TRANGTHAI" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

@@ -40,13 +40,11 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
     }
     public void Disable(){
         txtTenDangNhap.setEnabled(false);
-        jDateChooserNgayTao.setEnabled(false);
         cbxTenNhanVien.setEnabled(false);
         cbxLoaiTaiKhoan.setEnabled(false);
     }
      public void Enable(){
         txtTenDangNhap.setEnabled(true);
-        jDateChooserNgayTao.setEnabled(true);
         cbxTenNhanVien.setEnabled(true);
         cbxLoaiTaiKhoan.setEnabled(true);
     }
@@ -58,7 +56,6 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
          Them = false;
          Sua = false;
          txtTenDangNhap.setText("");
-         ((JTextField)this.jDateChooserNgayTao.getDateEditor().getUiComponent()).setText("");
          btnSua.setEnabled(false);
          btnThem.setEnabled(true);
          btnXoa.setEnabled(false);
@@ -72,9 +69,6 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
          else if(this.cbxTenNhanVien.getSelectedIndex() == -1){
              JOptionPane.showMessageDialog(this, "Bạn chưa chọn nhân viên được cấp tài khoản !","Thông báo",2);
          }
-         else if(((JTextField) jDateChooserNgayTao.getDateEditor().getUiComponent()).getText().equals("")){
-             JOptionPane.showMessageDialog(this, "Bạn chưa chọn ngày tạo tài khoản !","Thông báo",2);
-         }
         return kq;
      }
      private void taiDSNhanVien(){
@@ -85,7 +79,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
      }
      private void taiBangTaiKhoan(){
          tableTaiKhoan.removeAll();
-         String [] arr ={"Tên Đăng Nhập","Mã Nhân Viên","Loại Tài Khoản","Ngày Tạo"};
+         String [] arr ={"Tên Đăng Nhập","Mã Nhân Viên","Loại Tài Khoản"};
          DefaultTableModel model = new DefaultTableModel(arr,0);
          
          ArrayList array = xuLy.layTaiKhoan();
@@ -94,13 +88,12 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
              vt.add(((TaiKhoan) array.get(i)).getTenDangNhap());
              vt.add(((TaiKhoan) array.get(i)).getMaNhanVien()+" ("+xuLy.layTenNV(((TaiKhoan) array.get(i)).getMaNhanVien())+")");
              vt.add(((TaiKhoan) array.get(i)).getLoaiTaiKhoan());
-             vt.add(new SimpleDateFormat("dd/MM/yyyy").format(((TaiKhoan)array.get(i)).getNgayTao()));
              model.addRow(vt);
          }
          tableTaiKhoan.setModel(model);
      }
      public void loaiTaiKhoan(String s){
-         if(s.equals("Quản lý")){
+         if(s.equals("QUẢN LÝ")){
              cbxLoaiTaiKhoan.setSelectedIndex(0);
          }
          else{
@@ -116,10 +109,8 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtTenDangNhap = new javax.swing.JTextField();
         cbxTenNhanVien = new javax.swing.JComboBox<>();
-        jDateChooserNgayTao = new com.toedter.calendar.JDateChooser();
         jLabel7 = new javax.swing.JLabel();
         cbxLoaiTaiKhoan = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -153,18 +144,14 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel2.setText("Tên đăng nhập:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 16, -1, 40));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, 40));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel3.setText("Danh sách nhân viên:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 40));
-
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel5.setText("Ngày tạo:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, 30));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, 40));
 
         txtTenDangNhap.setEnabled(false);
-        jPanel1.add(txtTenDangNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 200, 30));
+        jPanel1.add(txtTenDangNhap, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 200, 30));
 
         cbxTenNhanVien.setEnabled(false);
         cbxTenNhanVien.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -176,15 +163,11 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        jPanel1.add(cbxTenNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, 200, 30));
-
-        jDateChooserNgayTao.setDateFormatString("dd/MM/yyyy");
-        jDateChooserNgayTao.setEnabled(false);
-        jPanel1.add(jDateChooserNgayTao, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 210, 30));
+        jPanel1.add(cbxTenNhanVien, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 200, 30));
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel7.setText("Loại tài khoản:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, 30));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 70, -1, 30));
 
         cbxLoaiTaiKhoan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "QUẢN LÝ", "NHÂN VIÊN" }));
         cbxLoaiTaiKhoan.setEnabled(false);
@@ -193,7 +176,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
                 cbxLoaiTaiKhoanActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxLoaiTaiKhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 20, 190, 30));
+        jPanel1.add(cbxLoaiTaiKhoan, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 70, 190, 30));
 
         tableTaiKhoan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -383,7 +366,6 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         txtTenDangNhap.setEnabled(true);
         cbxLoaiTaiKhoan.setEnabled(true);
         cbxTenNhanVien.setEnabled(false);
-        jDateChooserNgayTao.setEnabled(false);
         btnSua.setEnabled(false);
         btnThem.setEnabled(false);
         btnXoa.setEnabled(false);
@@ -397,7 +379,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         if(kiemTraRong()){
             if(Them == true){
                 if(xuLy.ktTaiKhoan(txtTenDangNhap.getText())){
-                    xuLy.themTaiKhoan(txtTenDangNhap.getText(),xuLy.maHoaMatKhau(matKhau),array[0], new java.sql.Date(jDateChooserNgayTao.getDate().getTime()),cbxLoaiTaiKhoan.getSelectedItem().toString());
+                    xuLy.themTaiKhoan(txtTenDangNhap.getText(),xuLy.maHoaMatKhau(matKhau),array[0],cbxLoaiTaiKhoan.getSelectedItem().toString());
                     System.out.println(matKhau);
                     Disable();
                     Refresh();
@@ -411,7 +393,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Tạo tài khoản thành công !\n Mật khẩu được gửi về mail của bạn !","Thông báo",1);
                 }
                 else{
-                    JOptionPane.showMessageDialog(this, "Tài khoản đã tồn tại !","Thông báo",1);
+                    JOptionPane.showMessageDialog(this, "Tên tài khoản đã tồn tại !","Thông báo",1);
                 }
             }
             else{
@@ -420,7 +402,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
                     TableModel model = tableTaiKhoan.getModel();
                     
                     if(model.getValueAt(click,0).toString().equals(txtTenDangNhap.getText())){
-                        xuLy.suaTaiKhoan(txtTenDangNhap.getText(),cbxLoaiTaiKhoan.getSelectedItem().toString(),new java.sql.Date(jDateChooserNgayTao.getDate().getTime()), model.getValueAt(click, 0).toString().trim());
+                        xuLy.suaTaiKhoan(txtTenDangNhap.getText(),cbxLoaiTaiKhoan.getSelectedItem().toString(), model.getValueAt(click, 0).toString().trim());
                         Disable();
                     Refresh();
                     taiBangTaiKhoan();
@@ -428,7 +410,7 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
                     }
                     else{
                         if(xuLy.ktTaiKhoan(txtTenDangNhap.getText())){
-                            xuLy.suaTaiKhoan(txtTenDangNhap.getText(),cbxLoaiTaiKhoan.getSelectedItem().toString(),new java.sql.Date(jDateChooserNgayTao.getDate().getTime()), model.getValueAt(click, 0).toString().trim());
+                            xuLy.suaTaiKhoan(txtTenDangNhap.getText(),cbxLoaiTaiKhoan.getSelectedItem().toString(),model.getValueAt(click, 0).toString().trim());
                             Disable();
                             Refresh();
                             taiBangTaiKhoan();
@@ -451,7 +433,6 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
         txtTenDangNhap.setText(model.getValueAt(click,0).toString());
         cbxTenNhanVien.addItem(model.getValueAt(click,1).toString());
         loaiTaiKhoan(model.getValueAt(click, 2).toString());
-        ((JTextField) jDateChooserNgayTao.getDateEditor().getUiComponent()).setText(model.getValueAt(click, 3).toString());
         btnSua.setEnabled(true);
         btnXoa.setEnabled(true);
     }//GEN-LAST:event_tableTaiKhoanMouseClicked
@@ -500,12 +481,10 @@ public class FormCapNhatTaiKhoan extends javax.swing.JFrame {
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cbxLoaiTaiKhoan;
     private javax.swing.JComboBox<String> cbxTenNhanVien;
-    private com.toedter.calendar.JDateChooser jDateChooserNgayTao;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;

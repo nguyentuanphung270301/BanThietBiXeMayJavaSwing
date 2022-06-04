@@ -127,7 +127,7 @@ public class XuLy {
                 PreparedStatement ps = ketNoi.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery();
                 while(rs.next()){
-                    ar.add(taiKhoan = new TaiKhoan(rs.getString(1), rs.getString(3),rs.getString(4), rs.getDate(5)));
+                    ar.add(taiKhoan = new TaiKhoan(rs.getString(1), rs.getString(3),rs.getString(4)));
                 }
         }
         catch(Exception e){
@@ -201,7 +201,7 @@ public class XuLy {
             while(rs.next()){
                 arr.add(nhanvien = new NhanVien(rs.getString(1),
                         rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getDate(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9),rs.getFloat(10)));
+                        rs.getString(7), rs.getString(8), rs.getString(9),rs.getFloat(10),rs.getInt(11)));
             }
         }
         catch(Exception ex){
@@ -218,7 +218,7 @@ public class XuLy {
             while (rs.next()) {
                 arry.add(nhanvien = new NhanVien(rs.getString(1),
                         rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getDate(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9),rs.getFloat(10)));
+                        rs.getString(7), rs.getString(8), rs.getString(9),rs.getFloat(10),rs.getInt(11)));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -235,7 +235,7 @@ public class XuLy {
             while(rs.next()){
                 arr.add(nhanvien = new NhanVien(rs.getString(1),
                         rs.getString(2), rs.getString(3), rs.getFloat(4), rs.getDate(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9),rs.getFloat(10)));
+                        rs.getString(7), rs.getString(8), rs.getString(9),rs.getFloat(10),rs.getInt(11)));
             }
         }
         catch(Exception ex){
@@ -342,8 +342,8 @@ public class XuLy {
         }
     }  
     public void suaNhanVien(String maNhanVien, String hoTen, Date ngaySinh, String gioiTinh, String diaChi, String sdt, String email,
-            float bacLuong, String maChucVu, String maNhanVienThayDoi){
-        String sql ="EXEC SP_SUANHANVIEN ?,?,?,?,?,?,?,?,?,?";
+            float bacLuong, String maChucVu,int trangThai ,String maNhanVienThayDoi){
+        String sql ="EXEC SP_SUANHANVIEN ?,?,?,?,?,?,?,?,?,?,?";
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
         try{
             PreparedStatement ps = ketNoi.prepareStatement(sql);
@@ -356,7 +356,8 @@ public class XuLy {
             ps.setString(7, email);
             ps.setFloat(8, bacLuong);
             ps.setString(9, maChucVu);
-            ps.setString(10, maNhanVienThayDoi);
+            ps.setInt(10, trangThai);
+            ps.setString(11, maNhanVienThayDoi);
             ps.executeUpdate();
         }
         catch(Exception e){
@@ -472,31 +473,42 @@ public class XuLy {
         }
         return kq;
     }
-    public void themTaiKhoan(String tenDangNhap, String matKhau, String maNhanVien, Date ngayTao,String loaiTaiKhoan){
+    public void themTaiKhoan(String tenDangNhap, String matKhau, String maNhanVien,String loaiTaiKhoan){
          Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
-         String sql ="EXEC SP_THEMTAIKHOAN ?,?,?,?,?";
+         String sql ="EXEC SP_THEMTAIKHOAN ?,?,?,?";
          try{
              PreparedStatement ps = ketNoi.prepareStatement(sql);
              ps.setString(1, tenDangNhap);
              ps.setString(2, matKhau);
              ps.setString(3, maNhanVien);
-             ps.setDate(4, ngayTao);
-             ps.setString(5, loaiTaiKhoan);
+             ps.setString(4, loaiTaiKhoan);
              ps.executeUpdate();
          }
          catch(Exception ex){
              ex.printStackTrace();
          }
     }
-    public void suaTaiKhoan(String tenDangNhap, String loaiTaiKhoan,Date ngayTao, String tenDangNhapThayDoi){
+    public void quenMatKhau(String tenDangNhap, String matKhau){
+         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+         String sql ="EXEC SP_QUENMATKHAU ?,?";
+         try{
+             PreparedStatement ps = ketNoi.prepareStatement(sql);
+             ps.setString(1, tenDangNhap);
+             ps.setString(2, matKhau);
+             ps.executeUpdate();
+         }
+         catch(Exception ex){
+             ex.printStackTrace();
+         }
+    }
+    public void suaTaiKhoan(String tenDangNhap, String loaiTaiKhoan, String tenDangNhapThayDoi){
         Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
-         String sql ="EXEC SP_SUATAIKHOAN ?,?,?,?";
+         String sql ="EXEC SP_SUATAIKHOAN ?,?,?";
          try{
              PreparedStatement ps = ketNoi.prepareStatement(sql);
              ps.setString(1, tenDangNhap);
              ps.setString(2, loaiTaiKhoan);
-             ps.setDate(3, ngayTao);
-             ps.setString(4, tenDangNhapThayDoi);
+             ps.setString(3, tenDangNhapThayDoi);
              ps.executeUpdate();
          }
          catch(Exception ex){
@@ -1539,5 +1551,86 @@ public class XuLy {
         catch(Exception ex){
             ex.printStackTrace();
         }
+    }
+    public boolean ktNhanVienTrongDonDatHang(String maNhanVien){
+        String sql ="EXEC SP_KTNHANVIENTRONGDONDATHANG ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        boolean ketQua = true;
+        try{
+        PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maNhanVien);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+    public boolean ktNhanVienTrongPhieuNhap(String maNhanVien){
+        String sql ="EXEC SP_KTNHANVIENTRONGPHIEUNHAP ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        boolean ketQua = true;
+        try{
+        PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maNhanVien);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+    public boolean ktNhanVienTrongPhieuXuat(String maNhanVien){
+        String sql ="EXEC SP_KTNHANVIENTRONGPHIEUXUAT ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        boolean ketQua = true;
+        try{
+        PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maNhanVien);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = false;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+    public ArrayList layThongTinQuenMatKhau(String tenDangNhap){
+        ArrayList arr = new ArrayList();
+        String sql ="EXEC SP_LAYTHONGTINQUENMATKHAU ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try{
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, tenDangNhap);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                arr.add(nhanvien = new NhanVien(rs.getString(1), rs.getString(2)));
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        return arr;
+    }
+    public int ktXoaChucVu(String maChucVu){
+        String sql ="EXEC SP_KTXOACHUCVU ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        int ketQua = 0;
+        try{
+        PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maChucVu);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = 1;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
     }
 }

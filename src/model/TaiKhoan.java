@@ -5,7 +5,6 @@ import java.util.Date;
 
 public class TaiKhoan {
     String tenDangNhap, matKhau,maNhanVien, hoTen, loaiTaiKhoan;
-    Date ngayTao ;
     public TaiKhoan() {
     }
     public TaiKhoan(TaiKhoan taiKhoan){
@@ -14,30 +13,26 @@ public class TaiKhoan {
         this.maNhanVien = taiKhoan.getMaNhanVien();
         this.hoTen = taiKhoan.getHoTen();
         this.loaiTaiKhoan = taiKhoan.getLoaiTaiKhoan();
-        this.ngayTao = taiKhoan.getNgayTao();
     }
-    public TaiKhoan(String tenDangNhap, String matKhau, String maNhanVien, String hoTen, String loaiTaiKhoan, Date ngayTao) {
+    public TaiKhoan(String tenDangNhap, String matKhau, String maNhanVien, String hoTen, String loaiTaiKhoan) {
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
         this.loaiTaiKhoan = loaiTaiKhoan;
-        this.ngayTao = ngayTao;
     }
 
-    public TaiKhoan(String tenDangNhap, String maNhanVien,String loaiTaiKhoan, Date ngayTao) {
+    public TaiKhoan(String tenDangNhap, String maNhanVien,String loaiTaiKhoan) {
         this.tenDangNhap = tenDangNhap;
         this.maNhanVien = maNhanVien;
         this.loaiTaiKhoan = loaiTaiKhoan;
-        this.ngayTao = ngayTao;
     }
 
-    public TaiKhoan(String tenDangNhap, String matKhau, String maNhanVien, String loaiTaiKhoan, Date ngayTao) {
+    public TaiKhoan(String tenDangNhap, String matKhau, String maNhanVien, String loaiTaiKhoan) {
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
         this.maNhanVien = maNhanVien;
         this.loaiTaiKhoan = loaiTaiKhoan;
-        this.ngayTao = ngayTao;
     }
     
     public String getTenDangNhap() {
@@ -78,15 +73,5 @@ public class TaiKhoan {
 
     public void setMaNhanVien(String maNhanVien) {
         this.maNhanVien = maNhanVien;
-    }
-
-    public Date getNgayTao() {
-        return ngayTao;
-    }
-
-    public void setNgayTao(Date ngayTao) {
-        this.ngayTao = ngayTao;
-    }
-    
-   
+    }  
 }
