@@ -18,7 +18,9 @@ import model.ChucVu;
 import model.NhanVien;
 import java.util.Date;
 import java.sql.*;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.table.TableModel;
@@ -285,6 +287,28 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
        private void timNhanVien(String sql) {
         ArrayList array = xuLy.timNhanVien(sql);
         View(array);
+    }
+     private long ktNgaySinh(Date ngayBatDau){
+        DateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+        Date currentDate = new Date();
+        Date date1 = null;
+        Date date2 = null;
+        long getDaysDiff = 0 ;
+        try{
+        String endDate = simpleDateFormat.format(currentDate);
+
+        date1 = ngayBatDau;
+        date2 = simpleDateFormat.parse(endDate);
+        
+        long getDiff = date2.getTime() - date1.getTime();
+
+        getDaysDiff = getDiff / (24 * 60 * 60 * 1000);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        } 
+        return getDaysDiff;
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -832,6 +856,9 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                     else if(!ktEmail(txtEmail.getText())){
                         JOptionPane.showMessageDialog(this, "Sai định dạng email !","Lỗi",2);
                     }
+                    else if(ktNgaySinh(jDateChooserNgaySinh.getDate()) < 6570 ){
+                        JOptionPane.showMessageDialog(this, "Tuổi phải đủ 18 tuổi!","Lỗi",2);
+                    }
                     else{
                     xuLy.themNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText().toUpperCase(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
                     cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(),Float.parseFloat(txtBacLuong.getText()), array[0]);
@@ -862,11 +889,15 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                     else if(!ktEmail(txtEmail.getText())){
                         JOptionPane.showMessageDialog(this, "Sai định dạng email !","Lỗi",2);
                     }
+                    else if(ktNgaySinh(jDateChooserNgaySinh.getDate()) < 6570 ){
+                        JOptionPane.showMessageDialog(this, "Tuổi phải đủ 18 tuổi!","Lỗi",2);
+                    }
                     else{
                         xuLy.suaNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText().toUpperCase(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
                             cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(),
                             Float.parseFloat(txtBacLuong.getText()),array[0],trangThai,model.getValueAt(click,0).toString().trim());
                     System.out.println(array[0]);
+                        xuLy.xoaTaiKhoanNVNghiLam(txtMaNhanVien.getText());
                     Disable();
                     Refresh();
                     taiBangNhanVien();
@@ -880,11 +911,15 @@ public class FormQuanLyNhanVien extends javax.swing.JFrame {
                     else if(!ktEmail(txtEmail.getText())){
                         JOptionPane.showMessageDialog(this, "Sai định dạng email !","Lỗi",2);
                     }
+                    else if(ktNgaySinh(jDateChooserNgaySinh.getDate()) < 6570 ){
+                        JOptionPane.showMessageDialog(this, "Tuổi phải đủ 18 tuổi!","Lỗi",2);
+                    }
                     else{
                     xuLy.suaNhanVien(txtMaNhanVien.getText().toUpperCase(), txtHoTen.getText(),new java.sql.Date(jDateChooserNgaySinh.getDate().getTime()),
                             cbxGioiTinh.getSelectedItem().toString(), txtDiaChi.getText().toUpperCase(), txtSoDienThoai.getText(), txtEmail.getText(),
                             Float.parseFloat(txtBacLuong.getText()),array[0],trangThai,model.getValueAt(click,0).toString().trim());
                     System.out.println(array[0]);
+                    xuLy.xoaTaiKhoanNVNghiLam(txtMaNhanVien.getText());
                     Disable();
                     Refresh();
                     taiBangNhanVien();

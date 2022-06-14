@@ -26,7 +26,9 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRTableModelDataSource;
 import net.sf.jasperreports.view.JasperViewer;
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 
 /**
  *
@@ -170,7 +172,7 @@ public class FormThongKe extends javax.swing.JFrame {
 
             }
         }
-        
+      
         LineChart LineChart = new LineChart(thoiGianKT, soHoaDonKT, doanhThu);
 
         ChartPanel chartPanel = new ChartPanel(LineChart.getLineChart());

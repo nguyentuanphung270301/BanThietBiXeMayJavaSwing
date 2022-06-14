@@ -12,7 +12,7 @@
 		<![CDATA[SELECT PX.MAPX , PX.GIOBAN, PX.NGAYBAN, PX.TIENNHAN , CT.DONGIA, CT.SOLUONG , NV.HOTEN , TB.TENTHIETBI, CT.MATHIETBI
 FROM PHIEUXUAT AS PX, CTPX AS CT, NHANVIEN AS NV, THIETBI AS TB
 WHERE
-PX.MAPX = $P{MAHOADON} AND PX.MAPX = CT.MAPX AND PX.MANHANVIEN = NV.MANHANVIEN AND CT.MATHIETBI = TB.MATHIETBI ]]>
+PX.MAPX = $P{MAHOADON} AND PX.MAPX = CT.MAPX AND PX.MANHANVIEN = NV.MANHANVIEN AND CT.MATHIETBI = TB.MATHIETBI]]>
 	</queryString>
 	<field name="MAPX" class="java.lang.String"/>
 	<field name="GIOBAN" class="java.sql.Time"/>
@@ -112,7 +112,7 @@ PX.MAPX = $P{MAHOADON} AND PX.MAPX = CT.MAPX AND PX.MANHANVIEN = NV.MANHANVIEN A
 				<textFieldExpression><![CDATA[$F{NGAYBAN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="57" y="1" width="57" height="20" uuid="68259e85-6b9c-4102-898a-e53d59ef802d"/>
+				<reportElement x="57" y="1" width="57" height="19" uuid="68259e85-6b9c-4102-898a-e53d59ef802d"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" size="8"/>
 				</textElement>

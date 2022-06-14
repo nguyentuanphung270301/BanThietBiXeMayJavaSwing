@@ -1633,4 +1633,48 @@ public class XuLy {
         }
         return ketQua;
     }
+     public void xoaTaiKhoanNVNghiLam(String maNhanVien){
+        String sql = "EXEC SP_XOATAIKHOANNVNGHILAM ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        try{
+            PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maNhanVien);
+            ps.executeUpdate();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+      public int ktNhaSanXuatTrongThietBi(String maNSX){
+        String sql ="EXEC SP_KTNHASANXUAT ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        int ketQua = 0;
+        try{
+        PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maNSX);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = 1;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
+       public int ktLoaiTBTrongThietBi(String maLoai){
+        String sql ="EXEC SP_KTLOAITHIETBI ?";
+        Connection ketNoi = KetNoiCoSoDuLieu.layKetNoi();
+        int ketQua = 0;
+        try{
+        PreparedStatement ps = ketNoi.prepareStatement(sql);
+            ps.setString(1, maLoai);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                ketQua = 1;
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return ketQua;
+    }
 }

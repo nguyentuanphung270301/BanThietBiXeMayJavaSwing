@@ -1656,10 +1656,15 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
     private void btnXoaLoaiThietBiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLoaiThietBiActionPerformed
         int Click = JOptionPane.showConfirmDialog(null, "Bạn có muốn loại thiết bị hay không?", "Thông Báo", 2);
         if (Click == JOptionPane.YES_OPTION) {
+            if(xuLy.ktLoaiTBTrongThietBi(txtMaLoai.getText().toString()) == 1){
+                JOptionPane.showMessageDialog(this,"Không thể xoá loai thiết bị vì có thiết bị !","Thông báo",2);
+            }
+            else{
             xuLy.xoaLoaiThietBi(txtMaLoai.getText());
             Refresh();
             taiBangLoaiThietBi();
             JOptionPane.showMessageDialog(this, "Xoá loại thiết bị thành công !","Thông báo",1);
+            }
         }
     }//GEN-LAST:event_btnXoaLoaiThietBiActionPerformed
 
@@ -1943,10 +1948,15 @@ public class FormQuanLyThietBi extends javax.swing.JFrame {
     private void btnXoaNhaSanXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaNhaSanXuatActionPerformed
         int Click = JOptionPane.showConfirmDialog(null, "Bạn có muốn xóa nhà sản xuất hay không?", "Thông Báo", 2);
         if (Click == JOptionPane.YES_OPTION) {
+            if(xuLy.ktNhaSanXuatTrongThietBi(txtMaNSX.getText().toString()) == 1){
+                JOptionPane.showMessageDialog(this,"Không thể xoá nhà sản xuất vì có thiết bị !","Thông báo",2);
+            }
+            else{
             xuLy.xoaNhaSanXuat(txtMaNSX.getText());
             Refresh();
             taiBangNhaSanXuat();
             JOptionPane.showMessageDialog(this,"Xoá nhà sản xuất thành công !","Thông báo",1);
+            }
         }
     }//GEN-LAST:event_btnXoaNhaSanXuatActionPerformed
 
